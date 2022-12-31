@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {# include head #}
+
+    <body class="wrapper">
+
+        {# include header ou header_index #}
+        
+
+        <section class="listUsers">
+            <h2>Listes des utilisateurs</h2>
+
+            <p class="status">Commentaire d'état de modification !</p>
+
+            <div class="listUser">
+                <h3> Prénom Nom - adresse email</h3>
+                
+                <form method="post" action="">
+                    
+                    <div class="selectFlex">
+                        <select id="role">
+                            <option value="">Old role</option>
+                            <option value="cuisinier1">User</option>
+                            <option value="cuisinier2">Admin</option>
+                            <option value="cuisinier3">Super admin</option>
+                        </select>
+                        <p class="error">Commentaire d'erreur !</p>
+                    </div>
+                    
+                    <input type="submit" value="Modifier les droits">
+                </form>
+            </div>
+            <div class="greyDivider"></div>  
+        </section>
+        
+        
+        {# include footer #}
+        
+    </body>
+</html>

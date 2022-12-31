@@ -1,14 +1,38 @@
 <!DOCTYPE html>
     <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bonjour à vous !</title>
-    </head>
 
-    <body>
-        <h1>Laissez-moi deviner! Vous vivez à {{ city }} ?</h1>
-        {{ csrf_field()|raw }}
+    {% include "includes/head.html" %}
+
+    <body class="wrapper">
+
+        {% include "includes/header.html" %}
+        {% include "includes/section_lastPost.html" %}
+        
+        
+        <section class="indexPosts">
+            <a class="recipe" href="route">
+                <img class="photo" src="img/choux.jpg" alt="nom image">
+                <div class="resume">
+                    <h2>Titre de la recette - Prenom Nom (cuisinier)</h2>
+                    <p>Description partielle de la recette</p>
+                    <span>
+                        <img class="whisk" src="img/whisk.svg" alt="Fouet">
+                        <img class="whisk" src="img/whisk.svg" alt="Fouet">
+                        <img class="whisk" src="img/whisk.svg" alt="Fouet">
+                        <img class="whisk" src="img/whisk.svg" alt="Fouet">
+                        <img class="euro" src="img/euro.svg" alt="Euro">
+                        <img class="euro" src="img/euro.svg" alt="Euro">
+                        <img class="euro" src="img/euro.svg" alt="Euro">
+                        <img class="euro" src="img/euro.svg" alt="Euro">
+                    </span>
+                    <p>Temps de préparation : 1 heure et 20 minutes</p>
+                </div>
+            </a>
+
+        </section>
+        
+        
+        {% include "includes/footer.html" %}
+        
     </body>
 </html>

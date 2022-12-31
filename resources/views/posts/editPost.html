@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {# include head #}
+
+    <body class="wrapper">
+
+        {# include header ou header_index #}
+        
+        <section class="editPost">
+            <h2>Modifier une recette</h2>
+
+            <p class="status">Commentaire d'état de modification !</p>
+
+            <form method="post" action="" enctype="multipart/form-data">
+                <div class="inputFlex">
+                    <label for="title">Titre de la recette</label>
+                    <input type="text" id="title" name="title" value="old" placeholder="Ecrivrez votre texte" required>
+                    <p class="error">Commentaire d'erreur !</p>
+                </div>
+
+                <div class="inputFlex">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" name="description" value="old" placeholder="Ecrivrez votre texte" required>
+                    <p class="error">Commentaire d'erreur !</p>
+                </div>
+
+                <div class="inputFlex">
+                    <label for="difficulty">Niveau de difficulté</label>
+                    <input type="number" id="difficulty" name="difficulty" value="old" placeholder="Nombre entre 1 et 4" required>
+                    <p class="error">Commentaire d'erreur !</p>
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="time">Temps de préparation</label>
+                    <input type="number" id="time" name="time" value="old" placeholder="Temps en minutes" required>
+                    <p class="error">Commentaire d'erreur !</p>
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="price">Niveau de coût</label>
+                    <input type="number" id="price" name="price" value="old" placeholder="Nombre entre 1 et 4" required>
+                    <p class="error">Commentaire d'erreur !</p>
+                </div>
+                
+                <div class="textareaFlex">
+                    <label for="ingredient">Ingrédients</label>
+                    <textarea id="ingredient" name="ingredient" value="old" placeholder="Séparez les ingrédients par un point virgule ;" style="height: 80px;"></textarea>
+                    <p class="error">Commentaire d'erreur !</p>
+                </div>
+                
+                <div class="textareaFlex">
+                    <label for="step">Étapes</label>
+                    <textarea id="step" name="step" value="old" placeholder="Séparez les étapes par un point virgule ;" style="height: 80px;"></textarea>
+                    <p class="error">Commentaire d'erreur !</p>
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="person">Nombre de personne(s)</label>
+                    <input type="number" id="person" name="person" value="old" placeholder="Ecrivrez le nombre" required>
+                    <p class="error">Commentaire d'erreur !</p>
+                </div>
+                
+                <div class="selectFlex">
+                    <label for="id_cooker">Cuisinier</label>
+                    <select id="id_cooker">
+                        <option value="old">Old</option>
+                        <option value="cuisinier1">Cuisinier 1</option>
+                        <option value="cuisinier2">Cuisinier 2</option>
+                        <option value="cuisinier3">Cuisinier 3</option>
+                    </select>
+                    <p class="error">Commentaire d'erreur !</p>
+                </div>
+
+                <input type="submit" value="Mise à jour">
+            </form>  
+        </section> 
+        
+        {# include footer #}
+        
+    </body>
+</html>

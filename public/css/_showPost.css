@@ -1,0 +1,211 @@
+/* SECTION SHOW POST */
+section.showPost {
+    flex-direction : row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    text-align: left;
+    justify-content: space-between;
+    margin: 3rem 0;
+    flex-grow: 1;
+}
+section.showPost p.status {
+    width: 100%;
+    font-weight: 500;
+    box-shadow: 0 0 6px var(--red);
+    border-radius: 5px;
+    text-align: left;
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin: 3rem 0 1rem 0;
+}
+section.showPost ul li {
+    list-style-type: none;
+    padding-bottom: 0.75rem;
+    margin-left: 0.5rem;
+}
+section.showPost ol li {
+    padding-bottom: 0.75rem;
+    margin-left: 1.5rem;
+}
+section.showPost ul li a {
+    font-family: var(--text);
+    color: var(--dark);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+section.showPost ul li a:hover {
+    color: var(--red);
+    border-bottom: 1px solid var(--red);
+    transition: all 0.3s;
+}
+
+/* HEADING */
+section.showPost .heading {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    flex-basis: 100%;
+}
+section.showPost .heading h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+section.showPost .heading h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+section.showPost .heading img.photo {
+    height: 300px;
+    width: 300px;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    border: 1px solid var(--grey);
+    box-shadow: 0 0 2px var(--grey);
+    margin: 0 auto 2rem auto;
+}
+
+/* BTN ADMIN */
+section.showPost .btn-admin {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+    justify-content: start;
+    flex-basis: 100%;
+    margin-bottom: 3rem;
+}
+section.showPost .btn-admin button {
+    margin-right: 2rem;
+    margin-top: 1rem;
+}
+
+/* ARTICLE RECIPE */
+section.showPost article.recipe {
+    flex-basis: 60%;
+    flex-grow: 1;
+}
+section.showPost article.recipe p.breadcrumb,
+section.showPost article.recipe p.time,
+section.showPost article.recipe p.person {
+    margin-bottom: 1rem;
+}
+section.showPost article.recipe p.description {
+    margin-bottom: 2rem;
+}
+section.showPost article.recipe a.cooker {
+    display: block;
+    font-family: var(--text);
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+section.showPost article.recipe a.cooker:hover {
+    color: var(--red);
+    transition: all 0.3s;
+}
+section.showPost article.recipe span img {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    padding: 3px;
+    margin: 1rem 1px;
+}
+section.showPost article.recipe span img.euro {
+    padding-right: 5px;
+}
+section.showPost h4 {
+    font-family: var(--title);
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    text-decoration: underline;
+}
+
+/* ASIDE ARTICLE */
+section.showPost aside.cookers {
+    justify-content: start;
+    align-items: start;
+    text-align: right;
+    flex-basis: 30%;
+    flex-grow: 1;
+    margin-left: 4rem;
+}
+
+/* COMMENTS */
+section.showPost .comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    text-align: left;
+    flex-basis: 100%;
+}
+section.showPost .comments form {
+    margin-top: 4rem;
+}
+section.showPost .comments form input[type="submit"] {
+    display: none;
+}
+section.showPost .comments .comment {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.75rem 0;
+}
+section.showPost .comments .comment .commentBody {
+    margin-right: 4rem;
+}
+section.showPost .comments .comment .commentBody p.commentName {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+section.showPost .comments .comment .commentBody p.body {
+    line-height: 1.25;
+}
+section.showPost .comments .comment button.btn-delete {
+    height: 40px;
+}
+
+@media screen and (max-width: 440px) {
+    section.showPost img.photo {
+        height: 220px;
+        width: 220px;
+    }
+}
+@media screen and (max-width: 600px) {
+    section.showPost .btn-admin {
+        flex-direction: column;
+        align-items: start;
+    }
+    section.showPost .comments .comment {
+        flex-direction: column;
+        align-items: start;
+    }
+    section.showPost .comments .comment .commentBody {
+        margin-right: 0;
+    }
+    section.showPost .comments .comment button.btn-delete {
+        margin: 1rem 0;
+    }
+}
+@media screen and (max-width: 740px) {
+    section.showPost article.recipe {
+        flex-basis: 100%;
+    }
+    section.showPost aside.cookers {
+        justify-content: start;
+        align-items: flex-start;
+        text-align: left;
+        margin-top: 3rem;
+        margin-left: 0;
+    }
+}

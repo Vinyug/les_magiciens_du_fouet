@@ -1,0 +1,82 @@
+/* SECTION SHOW COOKER */
+section.showCooker {
+    flex-direction : column;
+    align-items:flex-start;
+    text-align: left;
+    justify-content: start;
+    margin: 3rem 0;
+    flex-grow: 1;
+}
+section.showCooker p.status {
+    width: 100%;
+    font-weight: 500;
+    box-shadow: 0 0 6px var(--red);
+    border-radius: 5px;
+    text-align: left;
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin: 3rem 0 1rem 0;
+}
+section.showCooker h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+section.showCooker h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+section.showCooker img.photo {
+    height: 300px;
+    width: 300px;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    border: 1px solid var(--grey);
+    box-shadow: 0 0 2px var(--grey);
+    margin: 0 auto 2rem auto;
+}
+section.showCooker .btn-admin {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 1rem;
+}
+section.showCooker .btn-admin button {
+    margin-right: 2rem;
+    margin-top: 1rem;
+}
+section.showCooker h4 {
+    font-family: var(--title);
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    text-decoration: underline;
+}
+section.showCooker ul li {
+    list-style-type: none;
+    padding-bottom: 0.75rem;
+    margin-left: 0.5rem;
+}
+section.showCooker ul li a {
+    font-family: var(--text);
+    color: var(--dark);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+section.showCooker ul li a:hover {
+    color: var(--red);
+    border-bottom: 1px solid var(--red);
+    transition: all 0.3s;
+}
+@media screen and (max-width: 440px) {
+    section.showCooker img.photo {
+        height: 220px;
+        width: 220px;
+    }
+}

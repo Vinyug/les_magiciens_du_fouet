@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {# include head #}
+
+    <body class="wrapper">
+
+        {# include header ou header_index #}
+        
+        <section class="contact" id="contactId">
+            <h2>Contact</h2>
+            
+            <form id="contact-form" method="post" action="#" role="form">
+                <div class="inputFlex">
+                    <label for="firstname">Prénom *</label>
+                    <input type="text" id="firstname" name="firstname" class="" placeholder="Votre prénom" value="" required>
+                    <p class="comments" id="commentFirstname"></p>
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="name">Nom *</label>
+                    <input type="text" id="name" name="name" class="" placeholder="Votre nom" value="" required>
+                    <p class="comments" id="commentName"></p>
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" class="" placeholder="Votre email" value="" >
+                    <p class="comments" id="commentEmail"></p>
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="phone">Téléphone</label>
+                    <input type="tel" id="phone" name="phone" class="" placeholder="Votre téléphone" value="">
+                    <p class="comments" id="commentPhone"></p>
+                </div>
+                
+                <div class="textareaFlex">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" class="" placeholder="Votre message (600 caractères maximum)" style="height: 125px;" required></textarea>
+                    <p class="comments" id="commentMessage"></p>
+                </div>
+                    
+                <span>* Ces informations sont requises</span>
+
+                <p class="sendMail"></p>
+
+                <input id="submit" type="submit" value="Envoyer">
+            </form>
+        </section>
+        
+        {# include footer #}
+        
+    </body>
+</html>

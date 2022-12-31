@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {# include head #}
+
+    <body class="wrapper">
+
+        {# include header ou header_index #}
+        
+
+        <section class="login">
+            <h2>Connexion</h2>
+
+            <div class="messageLogin">
+                <h3>Heureux de vous revoir !</h3>
+                <p>Pas encore inscrit(e)? <a href="route">Inscrivez-vous</a></p>
+            </div>
+
+            <p class="status">Commentaire d'état !</p>
+           
+            <form method="post" action="">
+                
+                <div class="inputFlex">
+                    <input type="email" id="email" name="email" placeholder="Adresse email" required>
+                    <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                </div>
+                
+                <input type="submit" value="Connexion">
+            </form> 
+        </section>
+        
+        
+        {# include footer #}
+        
+    </body>
+</html>

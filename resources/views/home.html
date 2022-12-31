@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {# include head #}
+
+    <body class="wrapper">
+
+        {# include header ou header_index #}
+        
+
+        <section class="home">
+            <h2>Mon compte</h2>
+
+            <div class="btn-admin">
+                <button class="btn-beige">Liste utilisateurs</button>
+                <button class="btn-beige">Créer une recette</button>
+                <button class="btn-beige">Créer un cuisinier</button>
+            </div>
+
+            <p class="status">Commentaire d'état de modification !</p>
+
+            <div class="identity">
+                <form method="post" action="">
+                    <h3>Identité</h3>
+                    <div class="inputFlex">
+                        <label for="name">Prénom Nom</label>
+                        <input type="text" id="name" name="name" class="" placeholder="old" value="" required>
+                        <p class="error">Commentaire d'erreur !</p>
+                    </div>
+                    <div class="greyDivider"></div>
+                    <input type="submit" value="Modifier le nom">
+                </form>
+                
+                <form method="post" action="">
+                    <h3>Adresse email</h3>
+                    <div class="inputFlex">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="" placeholder="old" value="" required>
+                        <p class="error">Commentaire d'erreur !</p>
+                    </div>
+                    <div class="greyDivider"></div>
+                    <input type="submit" value="Modifier l'email">
+                </form>
+                
+                <form method="post" action="">
+                    <h3>Mot de passe</h3>
+                    <div class="inputFlex">
+                        <label for="password">Mot de passe actuel</label>
+                        <input type="password" id="password" name="password" class="" value="" required>
+                        <label for="new-password">Mot de passe</label>
+                        <input type="password" id="new-password" name="new-password" class="" value="" required>
+                        <label for="confirm-password">Confirmer mot de passe</label>
+                        <input type="password" id="confirm-password" name="confirm-password" class="" value="" required>
+                        <p class="error">Commentaire d'erreur !</p>
+                    </div>
+                    <div class="greyDivider"></div>
+                    <input type="submit" value="Modifier le mot de passe">
+                </form>
+                
+            </div>
+        </section>
+        
+        
+        {# include footer #}
+        
+    </body>
+</html>

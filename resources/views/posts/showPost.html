@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {# include head #}
+
+    <body class="wrapper">
+
+        {# include header ou header_index #}
+        
+        
+        <section class="showPost">
+
+            <p class="status">Commentaire d'état de modification !</p>
+
+            <div class="heading">
+                <h2>Titre de la recette</h2>
+                <h3>La fiche recette</h3>
+                <img class="photo" src="img/choux.jpg" alt="nom image">
+            </div>
+
+            <div class="btn-admin">
+                <button class="btn-blue">Modifier</button>
+                <button class="btn-dark">Afficher / Masquer</button>
+                <button class="btn-delete">Supprimer</button>
+            </div>
+
+
+            <article class="recipe">
+                <p class="breadcrumb">Vous êtes à : Les Magiciens du fouet / titre de la recette</p>
+                <a class="cooker" href="route">Prénom Nom</a>
+                <span>
+                    <img class="whisk" src="img/whisk.svg" alt="Fouet">
+                    <img class="whisk" src="img/whisk.svg" alt="Fouet">
+                    <img class="whisk" src="img/whisk.svg" alt="Fouet">
+                    <img class="whisk" src="img/whisk.svg" alt="Fouet">
+                    <img class="euro" src="img/euro.svg" alt="Euro">
+                    <img class="euro" src="img/euro.svg" alt="Euro">
+                    <img class="euro" src="img/euro.svg" alt="Euro">
+                    <img class="euro" src="img/euro.svg" alt="Euro">
+                </span>
+                <p class="time">1 heure et 20 minutes</p>
+                <p class="person">Pour X personne(s)</p>
+                <p class="description">Description complète de la recette
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, possimus veniam rem temporibus eum sint quas nobis dolor placeat facere, eveniet porro repellat praesentium accusantium in facilis quam cupiditate? Dicta, placeat tempore! Sapiente, dolores repellat distinctio vel libero mollitia aperiam dicta dignissimos accusantium quasi quidem harum! Explicabo maiores repudiandae quis dolor rem itaque vero iusto, quam tempore dolore dicta sed?
+                </p>
+                <div class="ingredient">
+                    <h4>Ingrédients</h4>
+                    <ul>
+                        <li>Ingrédients 1</li>
+                        <li>Ingrédients 2</li>
+                        <li>Ingrédients 3</li>
+                        <li>Ingrédients 4</li>
+                        <li>Ingrédients 5</li>
+                        <li>Ingrédients 6</li>
+                    </ul>
+                </div>
+                <div class="step">
+                    <h4>Étapes</h4>
+                    <ol>
+                        <li>Étape 1</li>
+                        <li>Étape 2</li>
+                        <li>Étape 3</li>
+                        <li>Étape 4</li>
+                        <li>Étape 5</li>
+                        <li>Étape 6</li>
+                    </ol>
+                </div>
+            </article>
+            
+            
+            <aside class="cookers">
+                <h4>Nos cuisiniers</h4>
+                <ul>
+                    <li><a href="route">Cuisinier 1</a></li>
+                    <li><a href="route">Cuisinier 2</a></li>
+                    <li><a href="route">Cuisinier 3</a></li>
+                    <li><a href="route">Cuisinier 4</a></li>
+                    <li><a href="route">Cuisinier 5</a></li>
+                    <li><a href="route">Cuisinier 6</a></li>
+                    <li><a href="route">Cuisinier 7</a></li>
+                    <li><a href="route">Cuisinier 8</a></li>
+                    <li><a href="route">Cuisinier 9</a></li>
+                    <li><a href="route">Cuisinier 10</a></li>
+                </ul>
+            </aside>
+
+
+            <div class="comments">
+                <form method="post" action="">
+                    <div class="inputFlex">
+                        <input type="text" id="comment" name="comment" placeholder="Ecrivrez un commentaire ↵" required>
+                    </div>
+                    <input type="submit" value="masquer">
+                </form>
+
+                <div class="comment">
+                    <div class="commentBody">
+                        <p class="commentName">Prénom Nom</p>
+                        <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quia architecto ipsum aliquid reprehenderit numquam dolorum error quod commodi amet!</p>
+                    </div>
+                    <button class="btn-delete">Supprimer</button>
+                </div>
+            </div>
+        </section>
+        
+        
+        {# include footer #}
+        
+    </body>
+</html>
