@@ -1,11 +1,11 @@
 <!DOCTYPE html>
     <html lang="fr">
 
-    {# include head #}
+    {% include "includes/head.html" %}
 
     <body class="wrapper">
 
-        {# include header ou header_index #}
+        {% include "includes/header.html" %}
         
 
         <section class="register">
@@ -16,15 +16,24 @@
                 <p>Déjà inscrit(e)? <a href="route">Connectez-vous</a></p>
             </div>
 
-            <p class="status">Commentaire d'état !</p>
+            {% if errors() %}
+            <ul class="status">
+                {% for error in errors() %}
+                <li>
+                    {{ error }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
            
-            <form method="post" action="">
+            <form method="post" action="{{ route('register.request') }}">
+                {{ csrf_field()|raw }}
                 
                 <div class="inputFlex">
-                    <input type="text" id="name" name="name" placeholder="Prénom NOM" required>
-                    <input type="email" id="email" name="email" placeholder="Adresse email" required>
-                    <input type="password" id="password" name="password" placeholder="Mot de passe" required>
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmation du mot de passe" required>
+                    <input type="text" id="name" name="name" placeholder="Prénom NOM" value="{{ old('name') }}">
+                    <input type="email" id="email" name="email" placeholder="Adresse email" value="{{ old('email') }}">
+                    <input type="password" id="password" name="password" placeholder="Mot de passe">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmation du mot de passe">
                 </div>
                 
                 <input type="submit" value="Connexion">
@@ -32,7 +41,7 @@
         </section>
         
         
-        {# include footer #}
+        {% include "includes/footer.html" %}
         
     </body>
 </html>

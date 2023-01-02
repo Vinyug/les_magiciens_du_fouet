@@ -25,7 +25,7 @@ section.register .messageRegister p a {
 section.register .messageRegister p a:hover {
     color: var(--red);
 }
-section.register p.status {
+section.register ul.status {
     width: 100%;
     font-weight: 500;
     box-shadow: 0 0 6px var(--red);
@@ -33,6 +33,11 @@ section.register p.status {
     text-align: left;
     padding: 0.5rem 0 0.5rem 1rem;
     margin: 1rem 0 1rem 0;
+}
+section.register ul.status li {
+    list-style: none;
+    line-height: 1.5rem;
+    font-weight: 500;
 }
 section.register form .inputFlex input:focus {
     z-index: 1;
