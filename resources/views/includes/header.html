@@ -1,5 +1,5 @@
 <header class="maxWidthBodyRed">
-    <a class="nameWebsite" href="route">
+    <a class="nameWebsite" href="{{ route('index') }}">
         <h1>Les Magiciens du Fouet</h1>
         <p>Toutes nos recettes</p>
     </a>
@@ -7,9 +7,9 @@
         <ul>
             <li><a href="route">Accueil</a></li>
             <li><a href="route">Cuisinier</a></li>
-            <li><a href="route">Connexion</a></li>
+            <li><a href="{{ route('login.form') }}">Connexion</a></li>
             <li><a href="{{ route('register.form') }}">Inscription</a></li>
-            <li><a href="route">Mon compte</a></li>
+            <li><a href="{{ route('home') }}">Mon compte</a></li>
             <li><a href="route">Contact</a></li>
             <li><a href="route">Deconnexion</a></li>
         </ul>

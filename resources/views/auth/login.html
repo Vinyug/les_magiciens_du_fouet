@@ -1,11 +1,11 @@
 <!DOCTYPE html>
     <html lang="fr">
 
-    {# include head #}
+    {% include "includes/head.html" %}
 
     <body class="wrapper">
 
-        {# include header ou header_index #}
+        {% include "includes/header.html" %}
         
 
         <section class="login">
@@ -13,16 +13,21 @@
 
             <div class="messageLogin">
                 <h3>Heureux de vous revoir !</h3>
-                <p>Pas encore inscrit(e)? <a href="route">Inscrivez-vous</a></p>
+                <p>Pas encore inscrit(e)? <a href="{{ route('register.form') }}">Inscrivez-vous</a></p>
             </div>
 
-            <p class="status">Commentaire d'état !</p>
+            {% if errors() %}
+            <p class="status">
+                {{ errors()[0] }}
+            </p>
+            {% endif %}
            
-            <form method="post" action="">
+            <form method="post" action="{{ route('login.request') }}">
+                {{ csrf_field()|raw }}
                 
                 <div class="inputFlex">
-                    <input type="email" id="email" name="email" placeholder="Adresse email" required>
-                    <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                    <input type="email" id="email" name="email" placeholder="Adresse email" value="{{ old('email') }}">
+                    <input type="password" id="password" name="password" placeholder="Mot de passe">
                 </div>
                 
                 <input type="submit" value="Connexion">

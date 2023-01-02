@@ -37,7 +37,6 @@ section.register ul.status {
 section.register ul.status li {
     list-style: none;
     line-height: 1.5rem;
-    font-weight: 500;
 }
 section.register form .inputFlex input:focus {
     z-index: 1;
