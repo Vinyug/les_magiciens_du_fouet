@@ -37,12 +37,16 @@
                     <input type="submit" value="Modifier le nom">
                 </form>
                 
-                <form method="post" action="">
+                <form method="post" action="{{ route('home.updateEmail') }}">
                     <h3>Adresse email</h3>
+                    {{ csrf_field()|raw }}
+                    {{ method('PATCH')|raw }}
                     <div class="inputFlex">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" class="" placeholder="old" value="">
-                        <p class="error">Commentaire d'erreur !</p>
+                        <input type="email" id="email" name="email" class="{% if errors('email') %}inputError{% endif %}" value="{{ old('email', user.email) }}">
+                        {% if errors('email') %}
+                        <p class="error">{{ errors('email')[0] }}</p>
+                        {% endif %}
                     </div>
                     <div class="greyDivider"></div>
                     <input type="submit" value="Modifier l'email">
