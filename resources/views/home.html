@@ -17,15 +17,21 @@
                 <button class="btn-beige">Créer un cuisinier</button>
             </div>
 
-            <p class="status">Commentaire d'état de modification !</p>
+            {% if status() %}
+            <p class="status">{{ status() }}</p>
+            {% endif %}
 
             <div class="identity">
-                <form method="post" action="">
+                <form method="post" action="{{ route('home.updateName') }}">
                     <h3>Identité</h3>
+                    {{ csrf_field()|raw }}
+                    {{ method('PATCH')|raw }}
                     <div class="inputFlex">
                         <label for="name">Prénom Nom</label>
-                        <input type="text" id="name" name="name" class="" placeholder="old" value="" required>
-                        <p class="error">Commentaire d'erreur !</p>
+                        <input type="text" id="name" name="name" class="{% if errors('name') %}inputError{% endif %}" value="{{ old('name', user.name) }}">
+                        {% if errors('name') %}
+                        <p class="error">{{ errors('name')[0] }}</p>
+                        {% endif %}
                     </div>
                     <div class="greyDivider"></div>
                     <input type="submit" value="Modifier le nom">
@@ -35,7 +41,7 @@
                     <h3>Adresse email</h3>
                     <div class="inputFlex">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" class="" placeholder="old" value="" required>
+                        <input type="email" id="email" name="email" class="" placeholder="old" value="">
                         <p class="error">Commentaire d'erreur !</p>
                     </div>
                     <div class="greyDivider"></div>
@@ -46,11 +52,11 @@
                     <h3>Mot de passe</h3>
                     <div class="inputFlex">
                         <label for="password">Mot de passe actuel</label>
-                        <input type="password" id="password" name="password" class="" value="" required>
+                        <input type="password" id="password" name="password" class="" value="">
                         <label for="new-password">Mot de passe</label>
-                        <input type="password" id="new-password" name="new-password" class="" value="" required>
+                        <input type="password" id="new-password" name="new-password" class="" value="">
                         <label for="confirm-password">Confirmer mot de passe</label>
-                        <input type="password" id="confirm-password" name="confirm-password" class="" value="" required>
+                        <input type="password" id="confirm-password" name="confirm-password" class="" value="">
                         <p class="error">Commentaire d'erreur !</p>
                     </div>
                     <div class="greyDivider"></div>
