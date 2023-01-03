@@ -52,16 +52,23 @@
                     <input type="submit" value="Modifier l'email">
                 </form>
                 
-                <form method="post" action="">
+                <form method="post" action="{{ route('home.updatePassword') }}">
                     <h3>Mot de passe</h3>
+                    {{ csrf_field()|raw }}
+                    {{ method('PATCH')|raw }}
                     <div class="inputFlex">
-                        <label for="password">Mot de passe actuel</label>
-                        <input type="password" id="password" name="password" class="" value="">
-                        <label for="new-password">Mot de passe</label>
-                        <input type="password" id="new-password" name="new-password" class="" value="">
+                        <label for="password_old">Mot de passe actuel</label>
+                        <input type="password" id="password_old" name="password_old" class="{% if errors('password_old') %}inputError{% endif %}" placeholder="Mot de passe actuel">
+                        {% if errors('password_old') %}
+                        <p class="error">{{ errors('password_old')[0] }}</p>
+                        {% endif %}
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="password" class="{% if errors('password') %}inputError{% endif %}" placeholder="Nouveau mot de passe">
                         <label for="confirm-password">Confirmer mot de passe</label>
-                        <input type="password" id="confirm-password" name="confirm-password" class="" value="">
-                        <p class="error">Commentaire d'erreur !</p>
+                        <input type="password" id="confirm-password" name="confirm-password" class="{% if errors('password') %}inputError{% endif %}" placeholder="Confirmer nouveau mot de passe">
+                        {% if errors('password') %}
+                        <p class="error">{{ errors('password')[0] }}</p>
+                        {% endif %}
                     </div>
                     <div class="greyDivider"></div>
                     <input type="submit" value="Modifier le mot de passe">
