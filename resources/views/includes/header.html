@@ -5,13 +5,24 @@
     </a>
     <nav>
         <ul>
-            <li><a href="route">Accueil</a></li>
+            {% if auth().check() %}
+            <li><a href="{{ route('index') }}">Accueil</a></li>
+            <li><a href="route">Cuisinier</a></li>
+            <li><a href="{{ route('home') }}">Mon compte</a></li>
+            <li><a href="route">Contact</a></li>
+            <li>
+                <a href="{{ route('logout') }}" id="btnLogout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Déconnexion</a>
+                <form method="POST" action="{{ route('logout') }}" id="logout-form" class="hidden">
+                    {{ csrf_field()|raw }}
+                </form>
+            </li>
+            {% else %}
+            <li><a href="{{ route('index') }}">Accueil</a></li>
             <li><a href="route">Cuisinier</a></li>
             <li><a href="{{ route('login.form') }}">Connexion</a></li>
             <li><a href="{{ route('register.form') }}">Inscription</a></li>
-            <li><a href="{{ route('home') }}">Mon compte</a></li>
             <li><a href="route">Contact</a></li>
-            <li><a href="route">Deconnexion</a></li>
+            {% endif %}
         </ul>
         <a class="nav-btn">
             <img src="img/menu.png" alt="icon menu">

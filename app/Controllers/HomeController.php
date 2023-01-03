@@ -10,11 +10,17 @@ class HomeController extends AbstractController
 {
     public function index(): void
     {
-        // si user authenticate redirection vers home
-        if(Auth::check()) {
-            $this->redirection('home');
+        // si user non authenticate, redirect login form
+        if(!Auth::check()) {
+            $this->redirection('login.form');
         }
-        
-        View::render('auth.register');
+
+        // récupérer les datas de User pour compléter la view home (compte)
+        $user = Auth::get();
+
+        // View home
+        View::render('home', [
+            'user' => $user,
+        ]);
     }
 }

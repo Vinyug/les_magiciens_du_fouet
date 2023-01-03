@@ -38,7 +38,6 @@ let validateEmail = false;
 let validatePhone = true;
 let validateMessage = false;
 
-// METHODE 2
 inputFirstname.addEventListener('input', verifyFirstname);
 inputName.addEventListener('input', verifyName);
 inputEmail.addEventListener('input', verifyEmail);
