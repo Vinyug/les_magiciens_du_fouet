@@ -11,11 +11,13 @@
         <section class="home">
             <h2>Mon compte</h2>
 
+            {% if auth().checkIsAdmin() %}
             <div class="btn-admin">
-                <button class="btn-beige">Liste utilisateurs</button>
-                <button class="btn-beige">Créer une recette</button>
-                <button class="btn-beige">Créer un cuisinier</button>
+                <a href=""><button class="btn-beige">Liste utilisateurs</button></a>
+                <a href="{{ route('posts.create') }}"><button class="btn-beige">Créer une recette</button></a>
+                <a href=""><button class="btn-beige">Créer un cuisinier</button></a>
             </div>
+            {% endif %}
 
             {% if status() %}
             <p class="status">{{ status() }}</p>

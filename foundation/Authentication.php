@@ -20,7 +20,14 @@ class Authentication
     public static function checkIsAdmin(): bool
     {
         // verif si connecté et si dans la BDD le role du user dispose de droit d'admin
-        return static::check() && static::get()->role === 'admin';
+        return static::check() && (static::get()->role === 'admin' || static::get()->role === 'super admin');
+    }
+
+    // si user est un super admin
+    public static function checkIsSuperAdmin(): bool
+    {
+        // verif si connecté et si dans la BDD le role du user dispose de droit de super admin
+        return static::check() && static::get()->role === 'super admin';
     }
     
     // vérifier email et mdp dans form sont bien dans la bdd
