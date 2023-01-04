@@ -11,72 +11,97 @@
         <section class="createPost">
             <h2>Création d'une recette</h2>
 
-            <p class="status">Commentaire d'état de modification !</p>
+            {% if status() %}
+            <p class="status">{{ status() }}</p>
+            {% endif %}
 
-            <form method="post" action="" enctype="multipart/form-data">
+            <form method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                {{ csrf_field()|raw }}
+
                 <div class="inputFlex">
                     <label for="title">Titre de la recette</label>
-                    <input type="text" id="title" name="title" placeholder="Ecrivrez votre texte" required>
-                    <p class="error">Commentaire d'erreur !</p>
+                    <input type="text" id="title" name="title" class="{% if errors('title') %}inputError{% endif %}" placeholder="Ecrivrez votre texte" value="{{ old('title') }}">
+                    {% if errors('title') %}
+                    <p class="error">{{ errors('title')[0] }}</p>
+                    {% endif %}
                 </div>
 
                 <div class="inputFlex">
                     <label for="description">Description</label>
-                    <input type="text" id="description" name="description" placeholder="Ecrivrez votre texte" required>
-                    <p class="error">Commentaire d'erreur !</p>
+                    <input type="text" id="description" name="description" class="{% if errors('description') %}inputError{% endif %}" placeholder="Ecrivrez votre texte" value="{{ old('description') }}">
+                    {% if errors('description') %}
+                    <p class="error">{{ errors('description')[0] }}</p>
+                    {% endif %}
                 </div>
 
                 <div class="inputFlex">
                     <label for="difficulty">Niveau de difficulté</label>
-                    <input type="number" id="difficulty" name="difficulty" placeholder="Nombre entre 1 et 4" required>
-                    <p class="error">Commentaire d'erreur !</p>
-                </div>
-                
-                <div class="inputFlex">
-                    <label for="time">Temps de préparation</label>
-                    <input type="number" id="time" name="time" placeholder="Temps en minutes" required>
-                    <p class="error">Commentaire d'erreur !</p>
+                    <input type="number" id="difficulty" name="difficulty" class="{% if errors('difficulty') %}inputError{% endif %}" placeholder="Nombre entre 1 et 4" value="{{ old('difficulty') }}">
+                    {% if errors('difficulty') %}
+                    <p class="error">{{ errors('difficulty')[0] }}</p>
+                    {% endif %}
                 </div>
                 
                 <div class="inputFlex">
                     <label for="price">Niveau de coût</label>
-                    <input type="number" id="price" name="price" placeholder="Nombre entre 1 et 4" required>
-                    <p class="error">Commentaire d'erreur !</p>
+                    <input type="number" id="price" name="price" class="{% if errors('price') %}inputError{% endif %}" placeholder="Nombre entre 1 et 4" value="{{ old('price') }}">
+                    {% if errors('price') %}
+                    <p class="error">{{ errors('price')[0] }}</p>
+                    {% endif %}
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="time">Temps de préparation</label>
+                    <input type="number" id="time" name="time" class="{% if errors('time') %}inputError{% endif %}" placeholder="Temps en minutes" value="{{ old('time') }}">
+                    {% if errors('time') %}
+                    <p class="error">{{ errors('time')[0] }}</p>
+                    {% endif %}
                 </div>
                 
                 <div class="textareaFlex">
                     <label for="ingredient">Ingrédients</label>
-                    <textarea id="ingredient" name="ingredient" placeholder="Séparez les ingrédients par un point virgule ;" style="height: 80px;"></textarea>
-                    <p class="error">Commentaire d'erreur !</p>
+                    <textarea id="ingredient" name="ingredient" class="{% if errors('ingredient') %}inputError{% endif %}" placeholder="Séparez les ingrédients par un point virgule ;" style="height: 80px;">{{ old('ingredient') }}</textarea>
+                    {% if errors('ingredient') %}
+                    <p class="error">{{ errors('ingredient')[0] }}</p>
+                    {% endif %}
                 </div>
                 
                 <div class="textareaFlex">
                     <label for="step">Étapes</label>
-                    <textarea id="step" name="step" placeholder="Séparez les étapes par un point virgule ;" style="height: 80px;"></textarea>
-                    <p class="error">Commentaire d'erreur !</p>
+                    <textarea id="step" name="step" class="{% if errors('step') %}inputError{% endif %}" placeholder="Séparez les étapes par un point virgule ;" style="height: 80px;">{{ old('step') }}</textarea>
+                    {% if errors('step') %}
+                    <p class="error">{{ errors('step')[0] }}</p>
+                    {% endif %}
                 </div>
                 
                 <div class="inputFlex">
                     <label for="person">Nombre de personne(s)</label>
-                    <input type="number" id="person" name="person" placeholder="Ecrivrez le nombre" required>
-                    <p class="error">Commentaire d'erreur !</p>
+                    <input type="number" id="person" name="person" class="{% if errors('person') %}inputError{% endif %}" placeholder="Ecrivrez le nombre" value="{{ old('person') }}">
+                    {% if errors('person') %}
+                    <p class="error">{{ errors('person')[0] }}</p>
+                    {% endif %}
                 </div>
                 
                 <div class="selectFlex">
-                    <label for="id_cooker">Cuisinier</label>
-                    <select id="id_cooker">
-                        <option value="">Sélectionnez un cuisinier</option>
+                    <label for="cooker_id">Cuisinier</label>
+                    <select id="cooker_id" name="cooker_id" class="{% if errors('cooker_id') %}inputError{% endif %}">
+                        <option value="{{ old('cooker_id') }}">Old name cooker</option>
+                        <option value="1">Cyril LIGNAC</option>
                         <option value="cuisinier1">Cuisinier 1</option>
                         <option value="cuisinier2">Cuisinier 2</option>
                         <option value="cuisinier3">Cuisinier 3</option>
                     </select>
-                    <p class="error">Commentaire d'erreur !</p>
+                    {% if errors('cooker_id') %}
+                    <p class="error">{{ errors('cooker_id')[0] }}</p>
+                    {% endif %}
                 </div>
                 
                 <div class="inputFlex">
                     <label class="label-file" for="file">Choisir une image</label>
-                    <input type="file" id="file" name="file" required>
-                    <p class="error">Commentaire d'erreur !</p>
+                    <input type="file" id="file" name="file" class="{% if errors('file') %}inputError{% endif %}" >
+                    {% if errors('file') %}
+                    <p class="error">{{ errors('file')[0] }}</p>
+                    {% endif %}
                 </div>
 
                 <input type="submit" value="Publier">

@@ -173,6 +173,7 @@ label {
     font-family: var(--text);
     border: 1px solid var(--grey);
     padding: 0.7rem 1rem;
+    margin-top: 2rem;
     letter-spacing: 1px;
     border-radius: 5px;
     transition: all 0.3s;
@@ -199,11 +200,11 @@ input:focus, textarea:focus, select:focus {
     outline: 1px solid var(--dark);
     box-shadow: 0 0 4px var(--dark);
 }
-input.inputError {
+input.inputError, select.inputError {
     background-color: var(--redLight);
     outline: 1px solid var(--red);
 }
-input.inputError:focus {
+input.inputError:focus, select.inputError:focus {
     outline: 1px solid var(--red);
     box-shadow: 0 0 8px var(--red);
 }
