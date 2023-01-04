@@ -52,7 +52,7 @@
                 
                 <div class="inputFlex">
                     <label for="time">Temps de préparation</label>
-                    <input type="number" id="time" name="time" class="{% if errors('time') %}inputError{% endif %}" placeholder="Temps en minutes" value="{{ old('time', post.time) }}">
+                    <input type="number" id="time" name="time" class="{% if errors('time') %}inputError{% endif %}" placeholder="Temps en minutes" value="{{ old('time', post.time) / 60 }}">
                     {% if errors('time') %}
                     <p class="error">{{ errors('time')[0] }}</p>
                     {% endif %}

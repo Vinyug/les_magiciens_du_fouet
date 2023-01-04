@@ -5,12 +5,15 @@ section.lastPost {
     justify-content: center;
     text-align: center;
     align-items: center;
-    padding : 1.5rem 0;
+    padding : 6rem 0;
 }
 section.lastPost h3 {
     font-family: var(--title);
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 1rem 0;
     font-size: 1.5rem;
+    font-weight: bold;
 }
 section.lastPost a {
     text-decoration: none;

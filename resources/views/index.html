@@ -10,28 +10,41 @@
         
         
         <section class="indexPosts">
+            {% for post in posts %}
             <a class="recipe" href="route">
-                <img class="photo" src="img/posts/choux.jpg" alt="nom image">
+                <img class="photo" src="img/posts/{{ post.img }}" alt="{{ post.img }}">
                 <div class="resume">
-                    <h2>Titre de la recette - Prenom Nom (cuisinier)</h2>
-                    <p>Description partielle de la recette</p>
+                    <h2>{{ post.title }} - Prénom NOM cuisinier à faire {{ post.cooker_id }}=id</h2>
+                    <p>{{ post.description }}</p>
                     <span>
-                        <img class="whisk" src="img/whisk.svg" alt="Fouet">
-                        <img class="whisk" src="img/whisk.svg" alt="Fouet">
-                        <img class="whisk" src="img/whisk.svg" alt="Fouet">
-                        <img class="whisk" src="img/whisk.svg" alt="Fouet">
-                        <img class="euro" src="img/euro.svg" alt="Euro">
-                        <img class="euro" src="img/euro.svg" alt="Euro">
-                        <img class="euro" src="img/euro.svg" alt="Euro">
-                        <img class="euro" src="img/euro.svg" alt="Euro">
+                        {% set whisk = post.difficulty %}
+                        {% for i in 1..whisk %}
+                            <img src="img/whisk.svg">
+                        {% endfor %}
+                        
+                        {% set euro = post.price %}
+                        {% for i in 1..euro %}
+                            <img src="img/euro.svg">
+                        {% endfor %}
                     </span>
-                    <p>Temps de préparation : 1 heure et 20 minutes</p>
+                    <p>Temps de préparation : 
+                        {% if (post.time / 3600) >= 1 %}
+                        {{ (post.time / 3600)|round(0, 'floor') }} heure(s)
+                        {% endif %}
+
+                        {% if (post.time / 60) <= 60 %}
+                        {{ (post.time / 60)|round(0, 'floor') }} minute(s)
+                        {% elseif (post.time / 60) >= 60 %}
+                        {{  (post.time / 60) % 60 }} minute(s)
+                        {% endif %}
+                    </p>
                 </div>
             </a>
+            {% endfor %}
 
         </section>
         
-        
+
         {% include "includes/footer.html" %}
         
     </body>

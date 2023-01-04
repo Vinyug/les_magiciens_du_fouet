@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 
 use App\Controllers\AuthController;
-use App\Controllers\BaseController;
 use App\Controllers\HomeController;
 use App\Controllers\PostController;
 use VGuyomarch\Foundation\Router\Route;
@@ -11,8 +10,6 @@ use VGuyomarch\Foundation\Router\Route;
 // On pourra demander au rooter quelle action effectuer
 
 return [
-    'index' => Route::get('/',[BaseController::class, 'index']),
-    
     // Authentification
     'register.form' => Route::get('/inscription', [AuthController::class, 'registerForm']),
     'register.request' => Route::post('/inscription', [AuthController::class, 'register']),
@@ -27,6 +24,7 @@ return [
     'home.updatePassword' => Route::patch('/compte/password', [HomeController::class, 'updatePassword']),
     
     // Post
+    'index' => Route::get('/', [PostController::class, 'index']),
     'posts.create' => Route::get('/posts/creer', [PostController::class, 'create']),
     'posts.store' => Route::post('/posts/creer', [PostController::class, 'store']),
     'posts.edit' => Route::get('/posts/{slug}/modifier', [PostController::class, 'edit']),

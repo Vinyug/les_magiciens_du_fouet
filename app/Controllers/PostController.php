@@ -14,6 +14,17 @@ use VGuyomarch\Foundation\View;
 
 class PostController extends AbstractController
 {
+    // afficher view index
+    public function index(): void
+    {
+        // afficher tous les posts sur index
+        $posts = Post::orderBy('id', 'desc')->get();
+        
+        View::render('index', [
+            'posts' => $posts,
+        ]);
+    }
+
     // afficher view post
     public function create(): void
     {
@@ -82,7 +93,7 @@ class PostController extends AbstractController
             'description' => $_POST['description'],
             'difficulty' => $_POST['difficulty'],
             'price' => $_POST['price'],
-            'time' => $_POST['time'],
+            'time' => $_POST['time']*60,
             'ingredient' => $_POST['ingredient'],
             'step' => $_POST['step'],
             'person' => $_POST['person'],
@@ -151,7 +162,7 @@ class PostController extends AbstractController
             'description' => $_POST['description'],
             'difficulty' => $_POST['difficulty'],
             'price' => $_POST['price'],
-            'time' => $_POST['time'],
+            'time' => $_POST['time']*60,
             'ingredient' => $_POST['ingredient'],
             'step' => $_POST['step'],
             'person' => $_POST['person'],
