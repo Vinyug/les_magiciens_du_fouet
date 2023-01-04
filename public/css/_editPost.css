@@ -23,3 +23,6 @@ section.editPost form .selectFlex p.error {
     padding: 0;
     margin: 0.5rem 0 0 0;
 }
+section.editPost form .selectFlex {
+    margin-bottom: 3rem;
+}

@@ -4,8 +4,10 @@ namespace App\Controllers;
 
 use App\Models\Post;
 use Cocur\Slugify\Slugify;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use VGuyomarch\Foundation\AbstractController;
 use VGuyomarch\Foundation\Authentication as Auth;
+use VGuyomarch\Foundation\Exceptions\HttpException;
 use VGuyomarch\Foundation\Session;
 use VGuyomarch\Foundation\Validator;
 use VGuyomarch\Foundation\View;
@@ -93,7 +95,73 @@ class PostController extends AbstractController
         Session::addFlash(Session::STATUS, 'Votre post a été publié !');
         // redirection vers posts.show
         // $this->redirection('posts.showPost', ['slug' => $post->slug]);
+    }
 
+    // modifier post
+    public function edit(string $slug): void
+    {
+        if(!Auth::checkIsAdmin()) {
+            $this->redirection('login.form');
+        }
+
+        try {
+            $post = Post::where('slug', $slug)->firstOrFail();
+        } catch (ModelNotFoundException) {
+            HttpException::render();
+        }
+
+        View::render('posts.editPost', [
+            'post' => $post,
+        ]);
+    }
+    
+    // update post
+    public function update(string $slug): void
+    {
+        if(!Auth::checkIsAdmin()) {
+            $this->redirection('login.form');
+        }
+        
+        $post = Post::where('slug', $slug)->firstOrFail();
+
+        // règle Validator
+        $validator = Validator::get($_POST);
+        $validator->mapFieldsRules([
+            'title' => ['required', ['lengthMin', 3]],
+            'description' => ['required', ['lengthMin', 3]],
+            'difficulty' => ['required', 'integer', 'intOneToFour'],
+            'time' => ['required', 'integer', ['lengthMin', 1], ['lengthMax', 3]],
+            'price' => ['required', 'integer', 'intOneToFour'],
+            'ingredient' => ['required', ['lengthMin', 3]],
+            'step' => ['required', ['lengthMin', 3]],
+            'person' => ['required', 'integer', 'intOneToTwenty'],
+            'cooker_id' => ['required', 'integer'],
+        ]);
+
+        // action si invalide
+        if(!$validator->validate()) {
+            Session::addFlash(Session::ERRORS, $validator->errors());
+            Session::addFlash(Session::OLD, $_POST);
+            $this->redirection('posts.edit', ['slug' => $post->slug]);
+        }
+
+        // action si valide
+        $post->fill([
+            'title' => $_POST['title'],
+            'description' => $_POST['description'],
+            'difficulty' => $_POST['difficulty'],
+            'price' => $_POST['price'],
+            'time' => $_POST['time'],
+            'ingredient' => $_POST['ingredient'],
+            'step' => $_POST['step'],
+            'person' => $_POST['person'],
+            'cooker_id' => $_POST['cooker_id'],
+        ]);
+        $post->save();
+
+        Session::addFlash(Session::STATUS, 'Votre post a bien été mis à jour !');
+        // redirection vers posts.show
+        // $this->redirection('posts.show', ['slug' => $post->slug]);
     }
 
     // creation slug article avec cocur/slugify
