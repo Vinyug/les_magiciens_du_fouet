@@ -40,7 +40,7 @@ class PostController extends AbstractController
             'ingredient' => ['required', ['lengthMin', 3]],
             'step' => ['required', ['lengthMin', 3]],
             'person' => ['required', 'integer', 'intOneToTwenty'],
-            'id_cooker' => ['required', 'integer'],
+            'cooker_id' => ['required', 'integer'],
             'file' => ['required_file', 'image', 'square'],
         ]);
 
