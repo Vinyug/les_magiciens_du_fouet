@@ -27,12 +27,9 @@
 
             <h4>Recette</h4>
             <ul>
-                <li><a href="route">Recette 1</a></li>
-                <li><a href="route">Recette 2</a></li>
-                <li><a href="route">Recette 3</a></li>
-                <li><a href="route">Recette 4</a></li>
-                <li><a href="route">Recette 5</a></li>
-                <li><a href="route">Recette 6</a></li>
+                {% for post in cooker.posts %}
+                <li><a href="{{ route('posts.show', {slug: post.slug}) }}">{{ post.title }}</a></li>
+                {% endfor %}
             </ul>
         </section>
         
