@@ -167,10 +167,15 @@ section.showPost .comments .comment .commentBody {
 }
 section.showPost .comments .comment .commentBody p.commentName {
     margin-bottom: 0.5rem;
-    font-weight: 500;
+    font-weight: bold;
 }
 section.showPost .comments .comment .commentBody p.body {
     line-height: 1.25;
+}
+section.showPost .comments .comment .commentBody p.commentTime {
+    margin-top: 0.5rem;
+    font-style: italic;
+    font-weight: 300;
 }
 section.showPost .comments .comment button.btn-delete {
     height: 40px;

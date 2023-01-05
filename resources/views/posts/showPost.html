@@ -13,6 +13,10 @@
             {% if status() %}
             <p class="status">{{ status() }}</p>
             {% endif %}
+            
+            {% if errors('comment') %}
+            <p class="status">{{ errors('comment')[0] }}</p>
+            {% endif %}
 
             <div class="heading">
                 <h2>{{ post.title }}</h2>
@@ -90,8 +94,9 @@
             <div class="comments">
                 {% if auth().check() %}
                 <form method="post" action="">
+                    {{ csrf_field()|raw }}
                     <div class="inputFlex">
-                        <input type="text" id="comment" name="comment" placeholder="Ecrivrez un commentaire ↵" required>
+                        <input type="text" id="comment" name="comment" value="{{old('comment') }}" placeholder="Ecrivrez un commentaire ↵">
                     </div>
                     <input type="submit" value="masquer">
                 </form>
@@ -99,26 +104,19 @@
                 <div class="greyDivider"></div>
                 {% endif %}
                 
+                {% for comment in post.comments %}
                 <div class="comment">
                     <div class="commentBody">
-                        <p class="commentName">Prénom Nom</p>
-                        <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quia architecto ipsum aliquid reprehenderit numquam dolorum error quod commodi amet!</p>
-                        <p style="margin-top: 0.5rem;">datetime</p>
+                        <p class="commentName">{{ comment.user.name }}</p>
+                        <p class="body">{{ comment.body }}</p>
+                        <p class="commentTime">{{ comment.created_at|date('d/m/Y à H:i') }}</p>
                     </div>
                     {% if auth().checkIsAdmin() %}
                     <button class="btn-delete">Supprimer</button>
                     {% endif %}
                 </div>
-                <div class="comment">
-                    <div class="commentBody">
-                        <p class="commentName">Prénom Nom</p>
-                        <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quia architecto ipsum aliquid reprehenderit numquam dolorum error quod commodi amet!</p>
-                        <p style="margin-top: 0.5rem;">datetime</p>
-                    </div>
-                    {% if auth().checkIsAdmin() %}
-                    <button class="btn-delete">Supprimer</button>
-                    {% endif %}
-                </div>
+                {% endfor %}
+
             </div>
         </section>
         

@@ -16,4 +16,5 @@ return [
     'person' => 'Le nombre de personne',
     'id_cooker' => 'Le cuisinier',
     'file' => 'Le fichier',
+    'comment' => 'Le commentaire',
 ];
