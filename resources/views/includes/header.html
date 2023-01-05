@@ -7,7 +7,7 @@
         <ul>
             {% if auth().check() %}
             <li><a href="{{ route('index') }}">Accueil</a></li>
-            <li><a href="route">Cuisinier</a></li>
+            <li><a href="{{ route('cookers') }}">Cuisinier</a></li>
             <li><a href="{{ route('home') }}">Mon compte</a></li>
             <li><a href="route">Contact</a></li>
             <li>

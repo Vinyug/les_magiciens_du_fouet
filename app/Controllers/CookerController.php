@@ -14,6 +14,17 @@ use VGuyomarch\Foundation\View;
 
 class CookerController extends AbstractController
 {
+    // afficher view listCookers
+    public function cookers(): void
+    {
+        // afficher tous les cookers sur index
+        $cookers = Cooker::orderBy('id', 'desc')->get();
+        
+        View::render('listCookers', [
+            'cookers' => $cookers,
+        ]);
+    }
+
     // accéder à un cooker
     public function show(string $slug): void
     {

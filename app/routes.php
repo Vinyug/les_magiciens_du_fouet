@@ -35,6 +35,7 @@ return [
     'posts.update' => Route::patch('/posts/{slug}/modifier', [PostController::class, 'update']),
 
     //Cooker
+    'cookers' => Route::get('/cookers', [CookerController::class, 'cookers']),
     'cookers.create' => Route::get('/cookers/creer', [CookerController::class, 'create']),
     'cookers.store' => Route::post('/cookers/creer', [CookerController::class, 'store']),
     'cookers.show' => Route::get('/cookers/{slug}', [CookerController::class, 'show']),
