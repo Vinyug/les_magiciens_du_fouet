@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use App\Controllers\AuthController;
+use App\Controllers\CookerController;
 use App\Controllers\HomeController;
 use App\Controllers\PostController;
 use VGuyomarch\Foundation\Router\Route;
@@ -32,4 +33,8 @@ return [
     'posts.delete' => Route::delete('/posts/{slug}', [PostController::class, 'delete']),
     'posts.edit' => Route::get('/posts/{slug}/modifier', [PostController::class, 'edit']),
     'posts.update' => Route::patch('/posts/{slug}/modifier', [PostController::class, 'update']),
+
+    //Cooker
+    'cookers.create' => Route::get('/cookers/creer', [CookerController::class, 'create']),
+    'cookers.store' => Route::post('/cookers/creer', [CookerController::class, 'store']),
 ];

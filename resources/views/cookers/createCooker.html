@@ -1,35 +1,45 @@
 <!DOCTYPE html>
     <html lang="fr">
 
-    {# include head #}
+    {% include "includes/head.html" %}
 
     <body class="wrapper">
 
-        {# include header ou header_index #}
+        {% include "includes/header.html" %}
         
 
         <section class="createCooker">
             <h2>Création d'un cuisinier</h2>
 
-            <p class="status">Commentaire d'état de modification !</p>
+            {% if status() %}
+            <p class="status">{{ status() }}</p>
+            {% endif %}
 
-            <form method="post" action="" enctype="multipart/form-data">
+            <form method="post" action="{{ route('cookers.store') }}" enctype="multipart/form-data">
+                {{ csrf_field()|raw }}
+
                 <div class="inputFlex">
                     <label for="firstname">Prénom</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="Ecrivrez votre prénom" required>
-                    <p class="error">Commentaire d'erreur !</p>
+                    <input type="text" id="firstname" name="firstname" class="{% if errors('firstname') %}inputError{% endif %}" placeholder="Ecrivrez le prénom" value="{{ old('firstname') }}">
+                    {% if errors('firstname') %}
+                    <p class="error">{{ errors('firstname')[0] }}</p>
+                    {% endif %}
                 </div>
 
                 <div class="inputFlex">
                     <label for="lastname">Nom</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Ecrivrez votre nom" required>
-                    <p class="error">Commentaire d'erreur !</p>
+                    <input type="text" id="lastname" name="lastname" class="{% if errors('lastname') %}inputError{% endif %}" placeholder="Ecrivrez le nom" value="{{ old('lastname') }}">
+                    {% if errors('lastname') %}
+                    <p class="error">{{ errors('lastname')[0] }}</p>
+                    {% endif %}
                 </div>
 
                 <div class="inputFlex">
                     <label class="label-file" for="file">Choisir une image</label>
-                    <input type="file" id="file" name="file" required>
-                    <p class="error">Commentaire d'erreur !</p>
+                    <input type="file" id="file" name="file" class="{% if errors('file') %}inputError{% endif %}">
+                    {% if errors('file') %}
+                    <p class="error">{{ errors('file')[0] }}</p>
+                    {% endif %}
                 </div>
 
                 <input type="submit" value="Publier">
@@ -37,7 +47,7 @@
         </section> 
         
         
-        {# include footer #}
+        {% include "includes/footer.html" %}
         
     </body>
 </html>

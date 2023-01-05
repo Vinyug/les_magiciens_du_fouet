@@ -17,4 +17,7 @@ return [
     'id_cooker' => 'Le cuisinier',
     'file' => 'Le fichier',
     'comment' => 'Le commentaire',
+    'firstname' => 'Le prénom',
+    'lastname' => 'Le nom',
+    
 ];
