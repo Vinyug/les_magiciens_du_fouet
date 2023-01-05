@@ -14,7 +14,7 @@
             <a class="recipe" href="{{ route('posts.show', {slug: post.slug}) }}">
                 <img class="photo" src="img/posts/{{ post.img }}" alt="{{ post.img }}">
                 <div class="resume">
-                    <h2>{{ post.title }} - Prénom NOM cuisinier à faire {{ post.cooker_id }}=id</h2>
+                    <h2>{{ post.title }} - {{ post.cooker.firstname }} {{ post.cooker.lastname }}</h2>
                     <p>{{ post.description }}</p>
                     <span>
                         {% set whisk = post.difficulty %}

@@ -17,7 +17,7 @@ class CookerController extends AbstractController
     // afficher view listCookers
     public function cookers(): void
     {
-        // afficher tous les cookers sur index
+        // afficher tous les cookers sur listCookers
         $cookers = Cooker::orderBy('id', 'desc')->get();
         
         View::render('listCookers', [

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Comment;
+use App\Models\Cooker;
 use App\Models\Post;
 use Cocur\Slugify\Slugify;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -25,7 +26,7 @@ class PostController extends AbstractController
             'posts' => $posts,
         ]);
     }
-
+    
     // accéder à un post
     public function show(string $slug): void
     {
@@ -35,9 +36,13 @@ class PostController extends AbstractController
         } catch (ModelNotFoundException) {
             HttpException::render();
         }
+        
+        // afficher tous les cookers sur show
+        $cookers = Cooker::orderBy('id', 'desc')->get();
 
         View::render('posts.showPost', [
             'post' => $post,
+            'cookers' => $cookers,
         ]);
     }
 
