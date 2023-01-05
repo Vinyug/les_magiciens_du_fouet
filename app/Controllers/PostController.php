@@ -38,7 +38,7 @@ class PostController extends AbstractController
         }
         
         // afficher tous les cookers sur show
-        $cookers = Cooker::orderBy('id', 'desc')->get();
+        $cookers = Cooker::inRandomOrder()->limit(10)->get();
 
         View::render('posts.showPost', [
             'post' => $post,
