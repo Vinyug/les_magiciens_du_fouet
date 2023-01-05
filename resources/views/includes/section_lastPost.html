@@ -2,6 +2,6 @@
     {% if posts[0] %}
     <h2>Notre dernière recette</h2>
     <h3>{{ posts[0].title }}</h3>
-    <a href="route">Voir l'article</a>
+    <a href="{{ route('posts.show', {slug: posts[0].slug}) }}">Voir l'article</a>
     {% endif %}
 </section>

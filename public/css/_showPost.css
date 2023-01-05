@@ -46,6 +46,7 @@ section.showPost .heading {
     text-align: center;
     align-items: center;
     flex-basis: 100%;
+    margin-bottom: 2rem;
 }
 section.showPost .heading h2 {
     font-size: 1.25rem;
@@ -159,7 +160,7 @@ section.showPost .comments .comment {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    margin: 0.75rem 0;
+    margin: 1.5rem 0;
 }
 section.showPost .comments .comment .commentBody {
     margin-right: 4rem;

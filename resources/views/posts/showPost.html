@@ -1,68 +1,78 @@
 <!DOCTYPE html>
     <html lang="fr">
 
-    {# include head #}
+    {% include "includes/head.html" %}
 
     <body class="wrapper">
 
-        {# include header ou header_index #}
+        {% include "includes/header.html" %}
         
         
         <section class="showPost">
 
-            <p class="status">Commentaire d'état de modification !</p>
+            {% if status() %}
+            <p class="status">{{ status() }}</p>
+            {% endif %}
 
             <div class="heading">
-                <h2>Titre de la recette</h2>
+                <h2>{{ post.title }}</h2>
                 <h3>La fiche recette</h3>
-                <img class="photo" src="img/posts/choux.jpg" alt="nom image">
+                <img class="photo" src="/img/posts/{{ post.img }}" alt="{{ post.img }}">
             </div>
 
+            {% if auth().checkIsAdmin() %}
             <div class="btn-admin">
-                <button class="btn-blue">Modifier</button>
-                <button class="btn-dark">Afficher / Masquer</button>
-                <button class="btn-delete">Supprimer</button>
+                <a href="{{ route('posts.edit', {slug: post.slug}) }}"><button class="btn-blue">Modifier</button></a>
+                <a href=""><button class="btn-dark">Afficher / Masquer</button></a>
+                <a href=""><button class="btn-delete">Supprimer</button></a>
             </div>
-
+            {% endif %}
 
             <article class="recipe">
-                <p class="breadcrumb">Vous êtes à : Les Magiciens du fouet / titre de la recette</p>
-                <a class="cooker" href="route">Prénom Nom</a>
+                <p class="breadcrumb">Vous êtes à : Les Magiciens du fouet / {{ post.title }}</p>
+                <p>Cuisinier : <a class="cooker" href="route">Prénom NOM cuisinier à faire {{ post.cooker_id }}=id</a></p>
                 <span>
-                    <img class="whisk" src="img/whisk.svg" alt="Fouet">
-                    <img class="whisk" src="img/whisk.svg" alt="Fouet">
-                    <img class="whisk" src="img/whisk.svg" alt="Fouet">
-                    <img class="whisk" src="img/whisk.svg" alt="Fouet">
-                    <img class="euro" src="img/euro.svg" alt="Euro">
-                    <img class="euro" src="img/euro.svg" alt="Euro">
-                    <img class="euro" src="img/euro.svg" alt="Euro">
-                    <img class="euro" src="img/euro.svg" alt="Euro">
+                    {% set whisk = post.difficulty %}
+                    {% for i in 1..whisk %}
+                        <img src="/img/whisk.svg" alt="Fouet">
+                    {% endfor %}
+                    
+                    {% set euro = post.price %}
+                    {% for i in 1..euro %}
+                        <img src="/img/euro.svg" alt="Euro">
+                    {% endfor %}
                 </span>
-                <p class="time">1 heure et 20 minutes</p>
-                <p class="person">Pour X personne(s)</p>
-                <p class="description">Description complète de la recette
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, possimus veniam rem temporibus eum sint quas nobis dolor placeat facere, eveniet porro repellat praesentium accusantium in facilis quam cupiditate? Dicta, placeat tempore! Sapiente, dolores repellat distinctio vel libero mollitia aperiam dicta dignissimos accusantium quasi quidem harum! Explicabo maiores repudiandae quis dolor rem itaque vero iusto, quam tempore dolore dicta sed?
+                <p class="time">Temps de préparation :
+                    {% if (post.time / 3600) == 1 %}
+                        {{ (post.time / 3600)|round(0, 'floor') }} heure
+                        {% elseif ((post.time / 3600) > 1) and ((post.time / 3600) < 2) %}
+                        {{ (post.time / 3600)|round(0, 'floor') }} heure
+                        {% elseif (post.time / 3600) > 1 %}
+                        {{ (post.time / 3600)|round(0, 'floor') }} heures
+                        {% endif %}
+
+                        {% if (post.time / 60) == 1 %}
+                        {{ (post.time / 60)|round(0, 'floor') }} minute
+                        {% elseif ((post.time / 60) % 60) == 0 %}
+                        {% elseif (post.time / 60) >= 60 %}
+                        {{  (post.time / 60) % 60 }} minutes
+                        {% endif %}
                 </p>
+                <p class="person">Pour {{ post.person }} personne(s)</p>
+                <div class="ingredient">
+                    <h4>Description</h4>
+                    <p class="description">{{ post.description|nl2br }}</p>
+                </div>
                 <div class="ingredient">
                     <h4>Ingrédients</h4>
                     <ul>
-                        <li>Ingrédients 1</li>
-                        <li>Ingrédients 2</li>
-                        <li>Ingrédients 3</li>
-                        <li>Ingrédients 4</li>
-                        <li>Ingrédients 5</li>
-                        <li>Ingrédients 6</li>
+                        <li>{{ post.ingredient|nl2br }}</li>
                     </ul>
                 </div>
                 <div class="step">
                     <h4>Étapes</h4>
                     <ol>
-                        <li>Étape 1</li>
-                        <li>Étape 2</li>
-                        <li>Étape 3</li>
-                        <li>Étape 4</li>
-                        <li>Étape 5</li>
-                        <li>Étape 6</li>
+                        <li>{{ post.step|nl2br }}</li>
                     </ol>
                 </div>
             </article>
@@ -71,40 +81,49 @@
             <aside class="cookers">
                 <h4>Nos cuisiniers</h4>
                 <ul>
-                    <li><a href="route">Cuisinier 1</a></li>
-                    <li><a href="route">Cuisinier 2</a></li>
-                    <li><a href="route">Cuisinier 3</a></li>
-                    <li><a href="route">Cuisinier 4</a></li>
-                    <li><a href="route">Cuisinier 5</a></li>
-                    <li><a href="route">Cuisinier 6</a></li>
-                    <li><a href="route">Cuisinier 7</a></li>
-                    <li><a href="route">Cuisinier 8</a></li>
-                    <li><a href="route">Cuisinier 9</a></li>
-                    <li><a href="route">Cuisinier 10</a></li>
+                    <li><a href="route">Prénom NOM cuisinier à faire {{ post.cooker_id }}=id</a></li>
+
                 </ul>
             </aside>
 
-
+            
             <div class="comments">
+                {% if auth().check() %}
                 <form method="post" action="">
                     <div class="inputFlex">
                         <input type="text" id="comment" name="comment" placeholder="Ecrivrez un commentaire ↵" required>
                     </div>
                     <input type="submit" value="masquer">
                 </form>
-
+                {% else %}
+                <div class="greyDivider"></div>
+                {% endif %}
+                
                 <div class="comment">
                     <div class="commentBody">
                         <p class="commentName">Prénom Nom</p>
                         <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quia architecto ipsum aliquid reprehenderit numquam dolorum error quod commodi amet!</p>
+                        <p style="margin-top: 0.5rem;">datetime</p>
                     </div>
+                    {% if auth().checkIsAdmin() %}
                     <button class="btn-delete">Supprimer</button>
+                    {% endif %}
+                </div>
+                <div class="comment">
+                    <div class="commentBody">
+                        <p class="commentName">Prénom Nom</p>
+                        <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quia architecto ipsum aliquid reprehenderit numquam dolorum error quod commodi amet!</p>
+                        <p style="margin-top: 0.5rem;">datetime</p>
+                    </div>
+                    {% if auth().checkIsAdmin() %}
+                    <button class="btn-delete">Supprimer</button>
+                    {% endif %}
                 </div>
             </div>
         </section>
         
         
-        {# include footer #}
+        {% include "includes/footer.html" %}
         
     </body>
 </html>

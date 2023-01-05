@@ -11,7 +11,7 @@
         
         <section class="indexPosts">
             {% for post in posts %}
-            <a class="recipe" href="route">
+            <a class="recipe" href="{{ route('posts.show', {slug: post.slug}) }}">
                 <img class="photo" src="img/posts/{{ post.img }}" alt="{{ post.img }}">
                 <div class="resume">
                     <h2>{{ post.title }} - Prénom NOM cuisinier à faire {{ post.cooker_id }}=id</h2>
@@ -19,12 +19,12 @@
                     <span>
                         {% set whisk = post.difficulty %}
                         {% for i in 1..whisk %}
-                            <img src="img/whisk.svg">
+                            <img src="/img/whisk.svg" alt="Fouet">
                         {% endfor %}
                         
                         {% set euro = post.price %}
                         {% for i in 1..euro %}
-                            <img src="img/euro.svg">
+                            <img src="/img/euro.svg" alt="Euro">
                         {% endfor %}
                     </span>
                     <p>Temps de préparation : 

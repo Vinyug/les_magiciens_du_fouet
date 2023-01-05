@@ -60,7 +60,7 @@
                 
                 <div class="textareaFlex">
                     <label for="ingredient">Ingrédients</label>
-                    <textarea id="ingredient" name="ingredient" class="{% if errors('ingredient') %}inputError{% endif %}" placeholder="Séparez les ingrédients par un point virgule ;" style="height: 80px;">{{ old('ingredient', post.ingredient) }}</textarea>
+                    <textarea id="ingredient" name="ingredient" class="{% if errors('ingredient') %}inputError{% endif %}" placeholder="Séparer les ingrédients en allant à la ligne ↵" style="height: 80px;">{{ old('ingredient', post.ingredient) }}</textarea>
                     {% if errors('ingredient') %}
                     <p class="error">{{ errors('ingredient')[0] }}</p>
                     {% endif %}
@@ -68,7 +68,7 @@
                 
                 <div class="textareaFlex">
                     <label for="step">Étapes</label>
-                    <textarea id="step" name="step" class="{% if errors('step') %}inputError{% endif %}" placeholder="Séparez les étapes par un point virgule ;" style="height: 80px;">{{ old('step', post.step) }}</textarea>
+                    <textarea id="step" name="step" class="{% if errors('step') %}inputError{% endif %}" placeholder="Séparer les étapes en allant à la ligne ↵" style="height: 80px;">{{ old('step', post.step) }}</textarea>
                     {% if errors('step') %}
                     <p class="error">{{ errors('step')[0] }}</p>
                     {% endif %}
