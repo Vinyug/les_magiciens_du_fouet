@@ -28,7 +28,13 @@
             <div class="btn-admin">
                 <a href="{{ route('posts.edit', {slug: post.slug}) }}"><button class="btn-blue">Modifier</button></a>
                 <a href=""><button class="btn-dark">Afficher / Masquer</button></a>
-                <a href=""><button class="btn-delete">Supprimer</button></a>
+                <span>
+                    <a href="{{ route('posts.delete', {slug: post.slug}) }}" onclick="event.preventDefault();document.getElementById('delete-post').submit();"><button class="btn-delete">Supprimer</button></a>
+                    <form method="POST" action="{{ route('posts.delete', {slug: post.slug}) }}" id="delete-post" class="hidden">
+                        {{ csrf_field()|raw }}
+                        {{ method('DELETE')|raw }}
+                    </form>
+                </span>
             </div>
             {% endif %}
 

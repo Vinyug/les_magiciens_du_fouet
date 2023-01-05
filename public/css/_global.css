@@ -234,3 +234,6 @@ input[type="submit"]:hover {
     box-shadow: 0 0 6px var(--dark);
     transition: all 0.3s;
 }
+.hidden {
+    display: none;
+}

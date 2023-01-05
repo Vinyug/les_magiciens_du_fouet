@@ -158,6 +158,7 @@ section.showPost .comments form input[type="submit"] {
 section.showPost .comments .comment {
     display: flex;
     flex-wrap: nowrap;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     margin: 1.5rem 0;
