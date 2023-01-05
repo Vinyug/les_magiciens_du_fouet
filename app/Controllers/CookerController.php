@@ -29,6 +29,23 @@ class CookerController extends AbstractController
         ]);
     }
 
+    // supprimer post
+    public function delete(string $slug): void
+    {
+        if(!Auth::checkIsAdmin()) {
+            $this->redirection('login.form');
+        }
+
+        $cooker = Cooker::where('slug', $slug)->firstOrFail();
+
+        // suppression de l'image dans le dossier puis du post en BDD
+        unlink(sprintf('%s/public/img/cookers/%s', ROOT, $cooker->img));
+        $cooker->delete();
+
+        $this->redirection('index');
+
+    }
+
     // afficher view cooker
     public function create(): void
     {
