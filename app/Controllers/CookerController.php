@@ -86,6 +86,59 @@ class CookerController extends AbstractController
 
     }
 
+    // modifier cooker
+    public function edit(string $slug): void
+    {
+        if(!Auth::checkIsAdmin()) {
+            $this->redirection('login.form');
+        }
+
+        try {
+            $cooker = Cooker::where('slug', $slug)->firstOrFail();
+        } catch (ModelNotFoundException) {
+            HttpException::render();
+        }
+
+        View::render('cookers.editCooker', [
+            'cooker' => $cooker,
+        ]);
+    }
+    
+    // update post
+    public function update(string $slug): void
+    {
+        if(!Auth::checkIsAdmin()) {
+            $this->redirection('login.form');
+        }
+        
+        $cooker = Cooker::where('slug', $slug)->firstOrFail();
+
+        // règle Validator
+        $validator = Validator::get($_POST);
+        $validator->mapFieldsRules([
+            'firstname' => ['required', ['lengthMin', 3]],
+            'lastname' => ['required', ['lengthMin', 3]],
+        ]);
+
+        // action si invalide
+        if(!$validator->validate()) {
+            Session::addFlash(Session::ERRORS, $validator->errors());
+            Session::addFlash(Session::OLD, $_POST);
+            $this->redirection('cookers.edit', ['slug' => $cooker->slug]);
+        }
+
+        // action si valide
+        $cooker->fill([
+            'firstname' => $_POST['firstname'],
+            'lastname' => $_POST['lastname'],
+        ]);
+        $cooker->save();
+
+        Session::addFlash(Session::STATUS, 'Votre cuisinier a bien été mis à jour !');
+        // redirection vers cookers.show
+        // $this->redirection('cookers.showCooker', ['slug' => $cooker->slug]);
+    }
+
     // creation slug cooker avec cocur/slugify
     public function slugify(string $name): string 
     {

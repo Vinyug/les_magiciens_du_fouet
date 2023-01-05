@@ -37,4 +37,6 @@ return [
     //Cooker
     'cookers.create' => Route::get('/cookers/creer', [CookerController::class, 'create']),
     'cookers.store' => Route::post('/cookers/creer', [CookerController::class, 'store']),
+    'cookers.edit' => Route::get('/cookers/{slug}/modifier', [CookerController::class, 'edit']),
+    'cookers.update' => Route::patch('/cookers/{slug}/modifier', [CookerController::class, 'update']),
 ];
