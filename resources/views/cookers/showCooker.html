@@ -1,25 +1,29 @@
 <!DOCTYPE html>
     <html lang="fr">
 
-    {# include head #}
+    {% include "includes/head.html" %}
 
     <body class="wrapper">
 
-        {# include header ou header_index #}
+        {% include "includes/header.html" %}
         
 
         <section class="showCooker">
 
-            <p class="status">Commentaire d'état de modification !</p>
+            {% if status() %}
+            <p class="status">{{ status() }}</p>
+            {% endif %}
 
             <h2>Cuisinier</h2>
-            <h3>Prenom Nom</h3>
-            <img class="photo" src="img/cookers/cooker1.jpg" alt="nom image">
+            <h3>{{ cooker.firstname }} {{ cooker.lastname }}</h3>
+            <img class="photo" src="/img/cookers/{{ cooker.img }}" alt="{{ cooker.img }}">
 
+            {% if auth().checkIsAdmin() %}
             <div class="btn-admin">
-                <button class="btn-blue">Modifier</button>
+                <a href="{{ route('cookers.edit', {slug: cooker.slug}) }}"><button class="btn-blue">Modifier</button></a>
                 <button class="btn-delete">Supprimer</button>
             </div>
+            {% endif %}
 
             <h4>Recette</h4>
             <ul>
@@ -33,7 +37,7 @@
         </section>
         
         
-        {# include footer #}
+        {% include "includes/footer.html" %}
         
     </body>
 </html>

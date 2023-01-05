@@ -14,6 +14,21 @@ use VGuyomarch\Foundation\View;
 
 class CookerController extends AbstractController
 {
+    // accéder à un cooker
+    public function show(string $slug): void
+    {
+        // select cooker selon slug
+        try {
+            $cooker = Cooker::where('slug', $slug)->firstOrFail();
+        } catch (ModelNotFoundException) {
+            HttpException::render();
+        }
+
+        View::render('cookers.showCooker', [
+            'cooker' => $cooker,
+        ]);
+    }
+
     // afficher view cooker
     public function create(): void
     {
@@ -82,7 +97,7 @@ class CookerController extends AbstractController
         // status MAJ
         Session::addFlash(Session::STATUS, 'Votre cuisinier a été publié !');
         // redirection vers cookers.show
-        // $this->redirection('cookers.showCooker', ['slug' => $cooker->slug]);
+        $this->redirection('cookers.show', ['slug' => $cooker->slug]);
 
     }
 
@@ -136,7 +151,7 @@ class CookerController extends AbstractController
 
         Session::addFlash(Session::STATUS, 'Votre cuisinier a bien été mis à jour !');
         // redirection vers cookers.show
-        // $this->redirection('cookers.showCooker', ['slug' => $cooker->slug]);
+        $this->redirection('cookers.show', ['slug' => $cooker->slug]);
     }
 
     // creation slug cooker avec cocur/slugify
