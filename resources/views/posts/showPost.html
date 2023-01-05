@@ -54,19 +54,23 @@
                 </span>
                 <p class="time">Temps de préparation :
                     {% if (post.time / 3600) == 1 %}
-                        {{ (post.time / 3600)|round(0, 'floor') }} heure
-                        {% elseif ((post.time / 3600) > 1) and ((post.time / 3600) < 2) %}
-                        {{ (post.time / 3600)|round(0, 'floor') }} heure
-                        {% elseif (post.time / 3600) > 1 %}
-                        {{ (post.time / 3600)|round(0, 'floor') }} heures
-                        {% endif %}
+                    {{ (post.time / 3600)|round(0, 'floor') }} heure
+                    {% elseif ((post.time / 3600) > 1) and ((post.time / 3600) < 2) %}
+                    {{ (post.time / 3600)|round(0, 'floor') }} heure
+                    {% elseif (post.time / 3600) > 1 %}
+                    {{ (post.time / 3600)|round(0, 'floor') }} heures
+                    {% endif %}
 
-                        {% if (post.time / 60) == 1 %}
-                        {{ (post.time / 60)|round(0, 'floor') }} minute
-                        {% elseif ((post.time / 60) % 60) == 0 %}
-                        {% elseif (post.time / 60) >= 60 %}
-                        {{  (post.time / 60) % 60 }} minutes
-                        {% endif %}
+                    {% if ((post.time / 60) == 1) %}
+                    {{ (post.time / 60)|round(0, 'floor') }} minute
+                    {% elseif (((post.time / 60) % 60) == 1) %}
+                    {{ ((post.time / 60) % 60)|round(0, 'floor') }} minute
+                    {% elseif ((post.time / 60) % 60) == 0 %}
+                    {% elseif (post.time / 60) < 60 %}
+                    {{  (post.time / 60) }} minutes
+                    {% elseif (post.time / 60) >= 60 %}
+                    {{  (post.time / 60) % 60 }} minutes
+                    {% endif %}
                 </p>
                 <p class="person">Pour {{ post.person }} personne(s)</p>
                 <div class="ingredient">
@@ -99,7 +103,7 @@
             
             <div class="comments">
                 {% if auth().check() %}
-                <form method="post" action="">
+                <form method="post" action="{{ route('posts.comment', {slug: post.slug}) }}">
                     {{ csrf_field()|raw }}
                     <div class="inputFlex">
                         <input type="text" id="comment" name="comment" value="{{old('comment') }}" placeholder="Ecrivrez un commentaire ↵">

@@ -36,9 +36,13 @@
                         {{ (post.time / 3600)|round(0, 'floor') }} heures
                         {% endif %}
 
-                        {% if (post.time / 60) == 1 %}
+                        {% if ((post.time / 60) == 1) %}
                         {{ (post.time / 60)|round(0, 'floor') }} minute
+                        {% elseif (((post.time / 60) % 60) == 1) %}
+                        {{ ((post.time / 60) % 60)|round(0, 'floor') }} minute
                         {% elseif ((post.time / 60) % 60) == 0 %}
+                        {% elseif (post.time / 60) < 60 %}
+                        {{  (post.time / 60) }} minutes
                         {% elseif (post.time / 60) >= 60 %}
                         {{  (post.time / 60) % 60 }} minutes
                         {% endif %}
