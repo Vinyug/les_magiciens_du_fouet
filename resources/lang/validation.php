@@ -19,5 +19,5 @@ return [
     'comment' => 'Le commentaire',
     'firstname' => 'Le prénom',
     'lastname' => 'Le nom',
-    
+    'role' => 'Le rôle',
 ];
