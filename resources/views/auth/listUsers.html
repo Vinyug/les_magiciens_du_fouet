@@ -1,41 +1,50 @@
 <!DOCTYPE html>
     <html lang="fr">
 
-    {# include head #}
+    {% include "includes/head.html" %}
 
     <body class="wrapper">
 
-        {# include header ou header_index #}
+        {% include "includes/header.html" %}
         
 
         <section class="listUsers">
             <h2>Listes des utilisateurs</h2>
 
-            <p class="status">Commentaire d'état de modification !</p>
+            {% if status() %}
+            <p class="status">{{ status() }}</p>
+            {% endif %}
 
+            {% for user in users %}
             <div class="listUser">
-                <h3> Prénom Nom - adresse email</h3>
+                <h3> {{ user.name }} - {{ user.email }} </h3>
                 
                 <form method="post" action="">
                     
+                    {% if auth().checkIsSuperAdmin() %}
                     <div class="selectFlex">
                         <select id="role">
-                            <option value="">Old role</option>
-                            <option value="cuisinier1">User</option>
-                            <option value="cuisinier2">Admin</option>
-                            <option value="cuisinier3">Super admin</option>
+                            <option value="{{ user.role }}"> {{ user.role }} </option>
+                            <option value="default">default</option>
+                            <option value="admin">admin</option>
+                            <option value="super admin">super admin</option>
                         </select>
-                        <p class="error">Commentaire d'erreur !</p>
+                        {% if errors('name') %}
+                        <p class="error">{{ errors('name')[0] }}</p>
+                        {% endif %}
                     </div>
                     
                     <input type="submit" value="Modifier les droits">
+                    {% endif %}
                 </form>
             </div>
             <div class="greyDivider"></div>  
+            {% endfor %}
+
         </section>
         
         
-        {# include footer #}
+        {% include "includes/footer.html" %}
         
     </body>
 </html>

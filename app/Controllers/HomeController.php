@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
 use VGuyomarch\Foundation\AbstractController;
 use VGuyomarch\Foundation\Authentication as Auth;
 use VGuyomarch\Foundation\Session;
@@ -23,6 +24,23 @@ class HomeController extends AbstractController
         // View home
         View::render('home', [
             'user' => $user,
+        ]);
+    }
+
+    // view listUsers
+    public function users(): void
+    {
+        // si user non authenticate, redirect login form
+        if(!Auth::checkIsAdmin()) {
+            $this->redirection('login.form');
+        }
+
+        // afficher tous les users 
+        $users = User::orderBy('id', 'desc')->get();
+
+        // View listUsers
+        View::render('auth.listUsers', [
+            'users' => $users,
         ]);
     }
 

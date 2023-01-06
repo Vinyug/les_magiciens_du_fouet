@@ -6,6 +6,9 @@ section.listUsers {
     margin: 3rem 0;
     flex-grow: 1;
 }
+section.listUsers h2 {
+    margin-bottom: 3rem;
+}
 section.listUsers p.status {
     width: 100%;
     font-weight: 500;
