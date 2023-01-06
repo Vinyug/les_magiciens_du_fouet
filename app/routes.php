@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use App\Controllers\AuthController;
+use App\Controllers\ContactController;
 use App\Controllers\CookerController;
 use App\Controllers\HomeController;
 use App\Controllers\PostController;
@@ -43,4 +44,7 @@ return [
     'cookers.delete' => Route::delete('/cookers/{slug}', [CookerController::class, 'delete']),
     'cookers.edit' => Route::get('/cookers/{slug}/modifier', [CookerController::class, 'edit']),
     'cookers.update' => Route::patch('/cookers/{slug}/modifier', [CookerController::class, 'update']),
+    
+    //Contact
+    'contact' => Route::get('/contact', [ContactController::class, 'contact']),
 ];
