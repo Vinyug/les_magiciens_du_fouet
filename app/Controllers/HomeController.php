@@ -27,23 +27,6 @@ class HomeController extends AbstractController
         ]);
     }
 
-    // view listUsers
-    public function users(): void
-    {
-        // si user non authenticate, redirect login form
-        if(!Auth::checkIsAdmin()) {
-            $this->redirection('login.form');
-        }
-
-        // afficher tous les users 
-        $users = User::orderBy('id', 'desc')->get();
-
-        // View listUsers
-        View::render('auth.listUsers', [
-            'users' => $users,
-        ]);
-    }
-
     // update name
     public function updateName(): void
     {
@@ -136,4 +119,22 @@ class HomeController extends AbstractController
         Session::addFlash(Session::STATUS, 'Votre mot de passe a été mis à jour !');
         $this->redirection('home');
     }
+
+    // view listUsers
+    public function users(): void
+    {
+        // si user non admin, redirect login form
+        if(!Auth::checkIsAdmin()) {
+            $this->redirection('login.form');
+        }
+
+        // afficher tous les users 
+        $users = User::orderBy('id', 'desc')->get();
+
+        // View listUsers
+        View::render('auth.listUsers', [
+            'users' => $users,
+        ]);
+    }
+    
 }

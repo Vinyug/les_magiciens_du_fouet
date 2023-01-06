@@ -99,8 +99,25 @@ section.showPost article.recipe p.person {
 section.showPost article.recipe p.description {
     margin-bottom: 2rem;
 }
+section.showPost article.recipe p.created_at {
+    margin-top: 2rem;
+    font-weight: 300;
+    font-style: italic;
+}
+section.showPost article.recipe p.breadcrumb a {
+    display: inline;
+    font-family: var(--text);
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+section.showPost article.recipe p.breadcrumb a:hover {
+    color: var(--red);
+    transition: all 0.3s;
+}
 section.showPost article.recipe a.cooker {
-    display: block;
+    display: inline-block;
     font-family: var(--text);
     color: var(--dark);
     text-decoration: none;
@@ -110,6 +127,9 @@ section.showPost article.recipe a.cooker {
 section.showPost article.recipe a.cooker:hover {
     color: var(--red);
     transition: all 0.3s;
+}
+section.showPost article.recipe span {
+    display: block;
 }
 section.showPost article.recipe span img {
     width: 32px;

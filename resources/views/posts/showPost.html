@@ -39,7 +39,7 @@
             {% endif %}
 
             <article class="recipe">
-                <p class="breadcrumb">Vous êtes à : Les Magiciens du fouet / {{ post.title }}</p>
+                <p class="breadcrumb">Vous êtes à : <a href="{{ route('index') }}">Les Magiciens du fouet</a> / {{ post.title }}</p>
                 <a class="cooker" href="{{ route('cookers.show', {slug: post.cooker.slug}) }}">{{ post.cooker.firstname }} {{ post.cooker.lastname }}</a>
                 <span>
                     {% set whisk = post.difficulty %}
@@ -89,15 +89,20 @@
                         <li>{{ post.step|nl2br }}</li>
                     </ol>
                 </div>
+                <p class="created_at">Publié le {{ post.created_at|date('d/m/Y à H:i') }}</p>
             </article>
             
             
             <aside class="cookers">
                 <h4>Nos cuisiniers</h4>
                 <ul>
-                    {% for cooker in cookers %}
-                    <li><a href="{{ route('cookers.show', {slug: cooker.slug}) }}">{{ cooker.firstname }} {{ cooker.lastname }}</a></li>
-                    {% endfor %}
+                    {% if post.cookers[0] %}
+                        <li>Aucun cuisiner à vous présenter pour le moment</li>
+                    {% else %}
+                        {% for cooker in cookers %}
+                        <li><a href="{{ route('cookers.show', {slug: cooker.slug}) }}">{{ cooker.firstname }} {{ cooker.lastname }}</a></li>
+                        {% endfor %}
+                    {% endif %}
                 </ul>
             </aside>
 
