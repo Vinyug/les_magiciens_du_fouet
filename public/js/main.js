@@ -35,9 +35,6 @@ const errPhone = document.getElementById('errPhone');
 const errorMessage = document.getElementById('commentMessage');
 const errMessage = document.getElementById('errMessage');
 
-const statusMail = document.querySelector('.sendMail');
-const submit = document.querySelector('#submit');
-
 
 inputFirstname.addEventListener('input', verifyFirstname);
 inputName.addEventListener('input', verifyName);
