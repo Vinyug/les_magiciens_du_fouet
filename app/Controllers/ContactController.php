@@ -32,9 +32,13 @@ class ContactController extends AbstractController
         // action si invalide
         if(!$validator->validate()) {
             Session::addFlash(Session::ERRORS, $validator->errors());
+            Session::addFlash(Session::OLD, $_POST);
             Session::addFlash(Session::STATUS, 'Vous devez compléter les champs requis !');
             $this->redirection('contact');
         }
+
+        // action si valide
+        // Envoyer un mail
 
         // status MAJ
         Session::addFlash(Session::STATUS, 'Votre message a bien été envoyé !');
