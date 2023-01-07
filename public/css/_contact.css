@@ -53,8 +53,18 @@ section.contact form input:focus, section.contact form textarea:focus {
     outline: 1px solid var(--dark);
     box-shadow: 0 0 4px var(--dark);
 }
+section.contact form input:focus.inputError, section.contact form textarea:focus.inputError {
+    outline: 1px solid var(--red);
+    box-shadow: 0 0 4px var(--red);
+}
 section.contact form .comments {
     display: none;
+    color: var(--delete);
+    height: 1.5rem;
+    margin-left: 1rem;
+    font-style: italic;
+}
+section.contact form .error {
     color: var(--delete);
     height: 1.5rem;
     margin-left: 1rem;
@@ -95,8 +105,8 @@ section.contact form input[type="submit"]:hover {
     box-shadow: 0 0 6px var(--dark);
     transition: all 0.4s;
 }
-section.contact form .sendMail {
-    color: var(--red);
+section.contact form .status {
+    color: var(--delete);
     font-size: 1.5rem;
     font-weight: bold;
     margin: 0 auto 2rem auto;

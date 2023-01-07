@@ -25,19 +25,19 @@ const inputPhone = document.getElementById('phone');
 const inputMessage = document.getElementById('message');
 
 const errorFirstname = document.getElementById('commentFirstname');
+const errFirstname = document.getElementById('errFirstname');
 const errorName = document.getElementById('commentName');
+const errName = document.getElementById('errName');
 const errorEmail = document.getElementById('commentEmail');
+const errEmail = document.getElementById('errEmail');
 const errorPhone = document.getElementById('commentPhone');
+const errPhone = document.getElementById('errPhone');
 const errorMessage = document.getElementById('commentMessage');
+const errMessage = document.getElementById('errMessage');
 
 const statusMail = document.querySelector('.sendMail');
 const submit = document.querySelector('#submit');
 
-let validateFirstname = false;
-let validateName = false;
-let validateEmail = false;
-let validatePhone = true;
-let validateMessage = false;
 
 inputFirstname.addEventListener('input', verifyFirstname);
 inputName.addEventListener('input', verifyName);
@@ -48,128 +48,126 @@ submit.addEventListener('click', validate);
 
 function verifyFirstname() {
     if (inputFirstname.value.length <= 2 || inputFirstname.value.length >= 20) {
+        errFirstname && errFirstname.remove();
+        inputFirstname.classList.add('inputError');
         errorFirstname.classList.add('comments-active');
         errorFirstname.innerText = `Le champs doit comporter 3 à 20 caractères`;
-        setTimeout(() => {
-            errorFirstname.classList.remove('comments-active');
-        }, 3000);
+    } else {
+        inputFirstname.classList.remove('inputError');
+        errorFirstname.classList.remove('comments-active');
     }
-    
+
     if (!inputFirstname.value) {
+        inputFirstname.classList.add('inputError');
         errorFirstname.classList.add('comments-active');
         errorFirstname.innerText = `Le champs ne peut pas être vide`;
         setTimeout(() => {
+            inputFirstname.classList.remove('inputError');
             errorFirstname.classList.remove('comments-active');
         }, 3000);
     }
-    
-    return validateFirstname = true;
+
 }
 
 function verifyName() {
     if (inputName.value.length <= 2 || inputName.value.length >= 20) {
+        errName && errName.remove();
+        inputName.classList.add('inputError');
         errorName.classList.add('comments-active');
         errorName.innerText = `Le champs doit comporter 3 à 20 caractères`;
-        setTimeout(() => {
-            errorName.classList.remove('comments-active');
-        }, 3000);
+    } else {
+        inputName.classList.remove('inputError');
+        errorName.classList.remove('comments-active');
     }
     
     if (!inputName.value) {
+        inputName.classList.add('inputError');
         errorName.classList.add('comments-active');
         errorName.innerText = `Le champs ne peut pas être vide`;
         setTimeout(() => {
+            inputName.classList.remove('inputError');
             errorName.classList.remove('comments-active');
         }, 3000);
     }
     
-    return validateName = true;
 }
 
 function verifyEmail() {
-    if (!isEmail(inputEmail.value)) {
-        errorEmail.classList.add('comments-active');
-        errorEmail.innerText = `Le champs doit être un mail`;
-        setTimeout(() => {
-            errorEmail.classList.remove('comments-active');
-        }, 3000);
-    }
+    
     
     if (inputEmail.value.length <= 6 || inputEmail.value.length >= 80) {
+        errEmail && errEmail.remove();
+        inputEmail.classList.add('inputError');
         errorEmail.classList.add('comments-active');
         errorEmail.innerText = `Le champs doit comporter 6 à 80 caractères`;
-        setTimeout(() => {
+    } else {
+        if (!isEmail(inputEmail.value)) {
+            inputEmail.classList.add('inputError');
+            errorEmail.classList.add('comments-active');
+            errorEmail.innerText = `Le champs doit être un mail`;
+        } else {
+            inputEmail.classList.remove('inputError');
             errorEmail.classList.remove('comments-active');
-        }, 3000);
+        }
     }
     
     if (!inputEmail.value) {
+        inputEmail.classList.add('inputError');
         errorEmail.classList.add('comments-active');
         errorEmail.innerText = `Le champs ne peut pas être vide`;
         setTimeout(() => {
+            inputEmail.classList.remove('inputError');
             errorEmail.classList.remove('comments-active');
         }, 3000);
     }
-
-    return validateEmail = true;
+    
 }
 
 function verifyPhone() {
     if (inputPhone.value.length) {
         if (inputPhone.value.length != 10) {
+            errPhone && errPhone.remove();
+            inputPhone.classList.add('inputError');
             errorPhone.classList.add('comments-active');
             errorPhone.innerText = `Le champs doit comporter 10 caractères`;
-            setTimeout(() => {
-                errorPhone.classList.remove('comments-active');
-            }, 3000);
-            return validatePhone = false;
         } else if (isNaN(inputPhone.value)) {
+            inputPhone.classList.add('inputError');
             errorPhone.classList.add('comments-active');
             errorPhone.innerText = `Le champs doit comporter des caractères numériques`;
-            setTimeout(() => {
-                errorPhone.classList.remove('comments-active');
-            }, 3000);
-            return validatePhone = false;
         } else {
-            return validatePhone = true;
+            inputPhone.classList.remove('inputError');
+            errorPhone.classList.remove('comments-active');
         }
+    } else {
+        inputPhone.classList.remove('inputError');
+        errorPhone.classList.remove('comments-active');
     }
 }
 
 function verifyMessage() {
-    if (inputMessage.value.length >= 600) {
+    if (inputMessage.value.length <= 2 || inputMessage.value.length >= 600) {
+        errMessage && errMessage.remove();
+        inputMessage.classList.add('inputError');
         errorMessage.classList.add('comments-active');
-        errorMessage.innerText = `Le champs doit comporter maximum 600 caractères`;
-        setTimeout(() => {
-            errorMessage.classList.remove('comments-active');
-        }, 3000);
+        errorMessage.innerText = `Le champs doit comporter 3 à 600 caractères`;
+    } else {
+        inputMessage.classList.remove('inputError');
+        errorMessage.classList.remove('comments-active');
     }
     
     if (!inputMessage.value) {
+        inputMessage.classList.add('inputError');
         errorMessage.classList.add('comments-active');
         errorMessage.innerText = `Le champs ne peut pas être vide`;
         setTimeout(() => {
+            inputMessage.classList.remove('inputError');
             errorMessage.classList.remove('comments-active');
         }, 3000);
     }
     
-    return validateMessage = true;
 }
 
 function isEmail(email) {
-    let regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    let regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regex.test(String(email).toLowerCase());
-}
-
-function validate(e) {
-    e.preventDefault();
-
-    if(validateFirstname && validateName && validateEmail && validatePhone && validateMessage) {
-        statusMail.innerText = `Nous vous remercions pour votre message !`;
-    } else {
-        statusMail.innerText = `Vous devez compléter les champs requis !`;
-        setTimeout(() => {
-            statusMail.innerText = ``;
-        }, 10000);
-    }
 }

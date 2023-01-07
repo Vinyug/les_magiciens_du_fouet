@@ -20,4 +20,6 @@ return [
     'firstname' => 'Le prénom',
     'lastname' => 'Le nom',
     'role' => 'Le rôle',
+    'phone' => 'Le téléphone',
+    'message' => 'Le message',
 ];

@@ -47,4 +47,6 @@ return [
     
     //Contact
     'contact' => Route::get('/contact', [ContactController::class, 'contact']),
+    'contact.mail' => Route::post('/contact', [ContactController::class, 'mail']),
+
 ];
