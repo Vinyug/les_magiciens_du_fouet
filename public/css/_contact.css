@@ -50,12 +50,16 @@ section.contact form input, section.contact form textarea {
     outline: 1px solid var(--grey);
 }
 section.contact form input:focus, section.contact form textarea:focus {
-    outline: 1px solid var(--dark);
+    outline: 1px solid var(--grey);
     box-shadow: 0 0 4px var(--dark);
+}
+section.contact form input.inputError, section.contact form textarea.inputError {
+    outline: 1px solid var(--red);
+    box-shadow: 0 0 4px var(--red);
 }
 section.contact form input:focus.inputError, section.contact form textarea:focus.inputError {
     outline: 1px solid var(--red);
-    box-shadow: 0 0 4px var(--red);
+    box-shadow: 0 0 12px var(--red);
 }
 section.contact form .comments {
     display: none;
