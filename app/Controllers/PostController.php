@@ -84,23 +84,27 @@ class PostController extends AbstractController
         }
 
         $post = Post::where('slug', $slug)->firstOrFail();
-
+        
         // suppression de l'image dans le dossier puis du post en BDD
         unlink(sprintf('%s/public/img/posts/%s', ROOT, $post->img));
         $post->delete();
-
+        
         $this->redirection('index');
-
+        
     }
-
+    
     // afficher view post
     public function create(): void
     {
         if(!Auth::checkIsAdmin()) {
             $this->redirection('login.form');
         }
+        
+        $cookers = Cooker::orderBy('id', 'desc')->get();
 
-        View::render('posts.createPost');
+        View::render('posts.createPost', [
+            'cookers' => $cookers,
+        ]);
     }
 
     public function store(): void
@@ -189,8 +193,11 @@ class PostController extends AbstractController
             HttpException::render();
         }
 
+        $cookers = Cooker::orderBy('id', 'desc')->get();
+
         View::render('posts.editPost', [
             'post' => $post,
+            'cookers' => $cookers,
         ]);
     }
     

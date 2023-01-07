@@ -85,11 +85,14 @@
                 <div class="selectFlex">
                     <label for="cooker_id">Cuisinier</label>
                     <select id="cooker_id" name="cooker_id" class="{% if errors('cooker_id') %}inputError{% endif %}">
-                        <option value="{{ old('cooker_id', post.cooker_id) }}">Old name cooker</option>
-                        <option value="1">Cyril LIGNAC</option>
-                        <option value="cuisinier1">Cuisinier 1</option>
-                        <option value="cuisinier2">Cuisinier 2</option>
-                        <option value="cuisinier3">Cuisinier 3</option>
+                        <option value="{{ old('id', post.cooker.id) }}">{{ old('firstname', post.cooker.firstname) }} {{ old('lastname', post.cooker.lastname) }}</option>
+                        {% if cookers[0] %}
+                            {% for cooker in cookers %}
+                            <option value="{{ cooker.id }}">{{ cooker.firstname }} {{ cooker.lastname }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="">Aucun cuisiner, il faut en créer</option>
+                        {% endif %}
                     </select>
                     {% if errors('cooker_id') %}
                     <p class="error">{{ errors('cooker_id')[0] }}</p>
