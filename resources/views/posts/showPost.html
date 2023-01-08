@@ -79,15 +79,13 @@
                 </div>
                 <div class="ingredient">
                     <h4>Ingrédients</h4>
-                    <ul>
-                        <li>{{ post.ingredient|nl2br }}</li>
-                    </ul>
+                    <span id="strUl">{{ post.ingredient|nl2br }}</span>
+                    <ul id="areaUl"></ul>
                 </div>
                 <div class="step">
                     <h4>Étapes</h4>
-                    <ol>
-                        <li>{{ post.step|nl2br }}</li>
-                    </ol>
+                    <span id="strOl">{{ post.step|nl2br }}</span>
+                    <ol id="areaOl"></ol>
                 </div>
                 <p class="created_at">Publié le {{ post.created_at|date('d/m/Y à H:i') }}</p>
             </article>

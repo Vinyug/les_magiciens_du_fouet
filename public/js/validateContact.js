@@ -1,23 +1,6 @@
 "use strict"
 
-// Navbar animée
-const btnNav = document.querySelector(`.nav-btn`);
-const listeNav = document.querySelector(`nav ul`);
-let imgBtn = document.querySelector(`.nav-btn img`);
-
-
-btnNav.addEventListener(`click`, () => {
-    listeNav.classList.toggle(`active-nav`);
-
-    if(imgBtn.src.includes(`menu`)){
-        imgBtn.src = `/img/cross.png`;
-
-    } else {
-        imgBtn.src = `/img/menu.png`;
-    }
-})
-
-// Formulaire contact validation
+// Form contact validation
 const inputFirstname = document.getElementById('firstname');
 const inputName = document.getElementById('name');
 const inputEmail = document.getElementById('email');

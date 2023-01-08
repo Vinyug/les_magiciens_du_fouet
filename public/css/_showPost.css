@@ -149,6 +149,10 @@ section.showPost h4 {
     margin: 1rem 0;
     text-decoration: underline;
 }
+section.showPost article.recipe .ingredient span#strUl,
+section.showPost article.recipe .step span#strOl {
+    display: none;
+}
 
 /* ASIDE ARTICLE */
 section.showPost aside.cookers {
