@@ -72,6 +72,10 @@ class Validator
             }
         }, '{field} doit être compris(e) entre 1 et 20');
 
-
+        // règle valeur exist en BDD
+        $validator->addRule('exist', function (string $field, mixed $value, array $params, array $fields) {
+            // requete return un bool pour vérifier si value exist dans BDD
+            return Capsule::table($params[1])->where($params[0], $value)->exists();
+        }, '{field} est invalide');
     }
 }

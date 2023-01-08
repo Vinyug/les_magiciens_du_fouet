@@ -14,7 +14,7 @@ return [
     'ingredient' => 'L\'ingrédient',
     'step' => 'L\'étape',
     'person' => 'Le nombre de personne',
-    'id_cooker' => 'Le cuisinier',
+    'cooker_id' => 'Le cuisinier',
     'file' => 'Le fichier',
     'comment' => 'Le commentaire',
     'firstname' => 'Le prénom',
