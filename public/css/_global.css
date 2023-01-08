@@ -208,9 +208,19 @@ input.inputError:focus, select.inputError:focus {
     outline: 1px solid var(--red);
     box-shadow: 0 0 8px var(--red);
 }
-input[type="file"] {
-    display: none;
+input[type="file"]#file {
+    outline: none;
+    background: var(--beige);
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    height: auto;
+    font-family: var(--text);
+    font-size: 1rem;
+    letter-spacing: 1px;
 } 
+input[type="file"]::file-selector-button {
+    display: none;
+}
 input[type="submit"] {
     position: absolute;
     right: 0;
