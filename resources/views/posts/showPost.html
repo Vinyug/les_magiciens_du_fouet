@@ -123,7 +123,7 @@
                     <div class="commentBody">
                         <p class="commentName">{{ comment.user.name }}</p>
                         <p class="body">{{ comment.body }}</p>
-                        <p class="commentTime">{{ comment.created_at|date('d/m/Y à H:i') }}</p>
+                        <p class="commentTime">Le {{ comment.created_at|date('d/m/Y à H:i') }}</p>
                     </div>
                     {% if auth().checkIsAdmin() %}
                     <button class="btn-delete">Supprimer</button>
