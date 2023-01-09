@@ -126,7 +126,13 @@
                         <p class="commentTime">Le {{ comment.created_at|date('d/m/Y à H:i') }}</p>
                     </div>
                     {% if auth().checkIsAdmin() %}
-                    <button class="btn-delete">Supprimer</button>
+                    <span>
+                        <a href="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" onclick="event.preventDefault();document.getElementById('delete-comment').submit();"><button class="btn-delete">Supprimer</button></a>
+                        <form method="POST" action="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" id="delete-comment" class="hidden">
+                            {{ csrf_field()|raw }}
+                            {{ method('DELETE')|raw }}
+                        </form>
+                    </span>
                     {% endif %}
                 </div>
                 {% endfor %}

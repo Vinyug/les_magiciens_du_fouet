@@ -75,6 +75,23 @@ class PostController extends AbstractController
         Session::addFlash(Session::STATUS, 'Votre commentaire à été publié !');
         $this->redirection('posts.show', ['slug' => $slug]);
     }
+    
+    // supprimer comment sur un post 
+    public function deleteComment(string $slug, int $id): void
+    {
+        if(!Auth::checkIsAdmin()) {
+            $this->redirection('login.form');
+        }
+        
+        $post = Post::where('slug', $slug)->firstOrFail();
+        $comment = Comment::where('id', $id)->firstOrFail();
+        
+        $comment->delete();
+        
+        Session::addFlash(Session::STATUS, 'Le commentaire à été supprimé !');
+        $this->redirection('posts.show', ['slug' => $post->slug]);
+
+    }
 
     // supprimer post
     public function delete(string $slug): void

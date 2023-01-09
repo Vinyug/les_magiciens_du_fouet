@@ -40,7 +40,7 @@ class CookerController extends AbstractController
         ]);
     }
 
-    // supprimer post
+    // supprimer cooker
     public function delete(string $slug): void
     {
         if(!Auth::checkIsAdmin()) {

@@ -26,7 +26,6 @@ function strToLi() {
             li.appendChild(document.createTextNode(splitsOl[i]));
             areaOl.appendChild(li);
         }
-        console.log(splitsOl[i]);
     }
 }
 
