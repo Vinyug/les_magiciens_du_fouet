@@ -18,7 +18,7 @@ class CookerController extends AbstractController
     public function cookers(): void
     {
         // afficher tous les cookers sur listCookers
-        $cookers = Cooker::orderBy('id', 'desc')->get();
+        $cookers = Cooker::orderBy('id', 'desc')->limit(10)->get();
         
         View::render('listCookers', [
             'cookers' => $cookers,
