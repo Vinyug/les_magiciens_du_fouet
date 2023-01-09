@@ -36,6 +36,9 @@ section.listUsers .listUser form {
     padding-bottom: 0;
     width: 50%;
 }
+section.listUsers .listUser p.role {
+    font-weight: 600;
+}
 section.listUsers .listUser form .selectFlex {
     max-width: 300px;   
 }
@@ -57,6 +60,9 @@ section.listUsers .listUser form input {
         flex-direction: column;
         justify-content: start;
         width: 100%;
+    }
+    section.listUsers .listUser p.role {
+        margin-top: 0.5rem;
     }
     section.listUsers .listUser form .selectFlex {
         margin-top: 1rem;    
