@@ -34,10 +34,11 @@ return [
     'posts.store' => Route::post('/posts/creer', [PostController::class, 'store']),
     'posts.show' => Route::get('/posts/{slug}', [PostController::class, 'show']),
     'posts.comment' => Route::post('/posts/{slug}', [PostController::class, 'comment']),
-    'posts.deleteComment' => Route::delete('/posts/{slug}/{id}', [PostController::class, 'deleteComment']),
     'posts.delete' => Route::delete('/posts/{slug}', [PostController::class, 'delete']),
     'posts.edit' => Route::get('/posts/{slug}/modifier', [PostController::class, 'edit']),
     'posts.update' => Route::patch('/posts/{slug}/modifier', [PostController::class, 'update']),
+    'posts.showComment' => Route::patch('/posts/{slug}/{id}', [PostController::class, 'showComment']),
+    'posts.deleteComment' => Route::delete('/posts/{slug}/{id}', [PostController::class, 'deleteComment']),
 
     //Cooker
     'cookers' => Route::get('/cookers', [CookerController::class, 'cookers']),

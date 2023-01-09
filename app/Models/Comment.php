@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Comment extends Model
 {  
     protected $fillable = [
-        'post_id', 'user_id', 'body',
+        'post_id', 'user_id', 'body', 'visibility'
     ];
 
     // accéder à la table User depuis Comment
@@ -16,4 +16,5 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
 }

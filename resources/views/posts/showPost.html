@@ -118,22 +118,11 @@
                 {% endif %}
                 
                 {% for comment in post.comments %}
-                <div class="comment">
-                    <div class="commentBody">
-                        <p class="commentName">{{ comment.user.name }}</p>
-                        <p class="body">{{ comment.body }}</p>
-                        <p class="commentTime">Le {{ comment.created_at|date('d/m/Y à H:i') }}</p>
-                    </div>
-                    {% if auth().checkIsAdmin() %}
-                    <span>
-                        <a href="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" onclick="event.preventDefault();document.getElementById('delete-comment').submit();"><button class="btn-delete">Supprimer</button></a>
-                        <form method="POST" action="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" id="delete-comment" class="hidden">
-                            {{ csrf_field()|raw }}
-                            {{ method('DELETE')|raw }}
-                        </form>
-                    </span>
+                    {% if comment.visibility %}
+                    {% include "includes/comment.html" %}
+                    {% elseif not comment.visibility and auth().checkIsAdmin() %}
+                    {% include "includes/comment.html" %}
                     {% endif %}
-                </div>
                 {% endfor %}
 
             </div>

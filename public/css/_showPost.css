@@ -85,6 +85,9 @@ section.showPost .btn-admin button {
     margin-right: 2rem;
     margin-top: 1rem;
 }
+section.showPost .btn-show {
+    margin-right: 1rem;
+}
 
 /* ARTICLE RECIPE */
 section.showPost article.recipe {
@@ -211,21 +214,22 @@ section.showPost .comments .comment button.btn-delete {
         height: 220px;
         width: 220px;
     }
+    section.showPost .btn-comment {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+    section.showPost .btn-comment .btn-show {
+        margin-bottom: 1rem;
+    }
 }
 @media screen and (max-width: 600px) {
     section.showPost .btn-admin {
         flex-direction: column;
         align-items: start;
     }
-    section.showPost .comments .comment {
-        flex-direction: column;
-        align-items: start;
-    }
     section.showPost .comments .comment .commentBody {
         margin-right: 0;
-    }
-    section.showPost .comments .comment button.btn-delete {
-        margin: 1rem 0;
     }
 }
 @media screen and (max-width: 740px) {
@@ -238,5 +242,14 @@ section.showPost .comments .comment button.btn-delete {
         text-align: left;
         margin-top: 3rem;
         margin-left: 0;
+    }
+}
+@media screen and (max-width: 880px) {
+    section.showPost .comments .comment {
+        flex-direction: column;
+        align-items: start;
+    }
+    section.showPost .btn-comment {
+        margin-top: 1rem;
     }
 }

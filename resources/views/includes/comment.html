@@ -1,0 +1,26 @@
+<div class="comment">
+    <div class="commentBody">
+        <p class="commentName">{{ comment.user.name }}</p>
+        <p class="body">{{ comment.body }}</p>
+        <p class="commentTime">Le {{ comment.created_at|date('d/m/Y à H:i') }}</p>
+    </div>
+    {% if auth().checkIsAdmin() %}
+    <div class="btn-comment">
+        <span class="btn-show">
+            <a href="{{ route('posts.showComment', {slug: post.slug, id: comment.id}) }}" onclick="event.preventDefault();document.getElementById('show-comment').submit();"><button class="{% if comment.visibility %}btn-dark{% else %}btn-blue{% endif %}">{% if comment.visibility %}Masquer{% else %}Afficher{% endif %}</button></a>
+            <form method="POST" action="{{ route('posts.showComment', {slug: post.slug, id: comment.id}) }}" id="show-comment" class="hidden">
+                {{ csrf_field()|raw }}
+                {{ method('PATCH')|raw }}
+                <input type="number" name="visibility" id="visibility" value="{% if comment.visibility %}0{% else %}1{% endif %}">
+            </form>
+        </span>
+        <span>
+            <a href="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" onclick="event.preventDefault();document.getElementById('delete-comment').submit();"><button class="btn-delete">Supprimer</button></a>
+            <form method="POST" action="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" id="delete-comment" class="hidden">
+                {{ csrf_field()|raw }}
+                {{ method('DELETE')|raw }}
+            </form>
+        </span>
+    </div>
+    {% endif %}
+</div>

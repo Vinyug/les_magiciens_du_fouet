@@ -74,7 +74,7 @@ class PostController extends AbstractController
             'body' => $_POST['comment'],
         ]);
         
-        Session::addFlash(Session::STATUS, 'Votre commentaire à été publié !');
+        Session::addFlash(Session::STATUS, 'Votre commentaire est en attente de validation !');
         $this->redirection('posts.show', ['slug' => $slug]);
     }
     
@@ -87,10 +87,48 @@ class PostController extends AbstractController
         
         $post = Post::where('slug', $slug)->firstOrFail();
         $comment = Comment::where('id', $id)->firstOrFail();
+
         
         $comment->delete();
         
-        Session::addFlash(Session::STATUS, 'Le commentaire à été supprimé !');
+        Session::addFlash(Session::STATUS, 'Le commentaire a été supprimé !');
+        $this->redirection('posts.show', ['slug' => $post->slug]);
+
+    }
+
+    // show/hide comment sur un post 
+    public function showComment(string $slug, int $id): void
+    {
+        if(!Auth::checkIsAdmin()) {
+            $this->redirection('login.form');
+        }
+        
+        $post = Post::where('slug', $slug)->firstOrFail();
+        $comment = Comment::where('id', $id)->firstOrFail();
+
+        // $comment = Comment::join('posts', 'comments.post_id', '=', 'posts.id')->where('comments.post_id', $id)->firstOrFail();
+        
+        
+        // règle Validator
+        $validator = Validator::get($_POST);
+        $validator->mapFieldsRules([
+            'visibility' => ['required', 'integer', ['min', 0], ['max', 1]],
+        ]);
+
+        // action si invalide
+        if(!$validator->validate()) {
+            Session::addFlash(Session::STATUS, 'Le commentaire n\' pas changé d\'affichage !');
+            Session::addFlash(Session::OLD, $_POST);
+            $this->redirection('posts.show', ['slug' => $post->slug]);
+        }
+
+        // action si valide
+        $comment->fill([
+            'visibility' => $_POST['visibility'],
+        ]);
+        $comment->save();
+
+        Session::addFlash(Session::STATUS, 'Le commentaire a changé d\'affichage !');
         $this->redirection('posts.show', ['slug' => $post->slug]);
 
     }
