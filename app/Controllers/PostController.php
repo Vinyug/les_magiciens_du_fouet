@@ -21,9 +21,11 @@ class PostController extends AbstractController
     {
         // afficher tous les posts sur index
         $posts = Post::orderBy('id', 'desc')->get();
+        $firstPost = Post::where('visibility', 1)->orderBy('id', 'desc')->first();
         
         View::render('index', [
             'posts' => $posts,
+            'firstPost' => $firstPost,
         ]);
     }
     

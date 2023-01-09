@@ -1,7 +1,7 @@
 <section class="maxWidthBodyRed lastPost">
-    {% if posts[0] %}
+    {% if firstPost %}
     <h2>Notre dernière recette</h2>
-    <h3>{{ posts[0].title }}</h3>
-    <a href="{{ route('posts.show', {slug: posts[0].slug}) }}">Voir l'article</a>
+    <h3>{{ firstPost.title }}</h3>
+    <a href="{{ route('posts.show', {slug: firstPost.slug}) }}">Voir l'article</a>
     {% endif %}
 </section>
