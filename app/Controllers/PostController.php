@@ -143,7 +143,7 @@ class PostController extends AbstractController
             'step' => ['required', ['lengthMin', 3]],
             'person' => ['required', 'integer', 'intOneToTwenty'],
             'cooker_id' => ['required', 'integer', ['exist', 'id', 'cookers']],
-            'visibility' => ['required'],
+            'visibility' => ['required', 'integer', ['min', 0], ['max', 1]],
             'file' => ['required_file', 'image', 'square'],
         ]);
 
@@ -241,7 +241,7 @@ class PostController extends AbstractController
             'step' => ['required', ['lengthMin', 3]],
             'person' => ['required', 'integer', 'intOneToTwenty'],
             'cooker_id' => ['required', 'integer', ['exist', 'id', 'cookers']],
-            'visibility' => ['required'],
+            'visibility' => ['required', 'integer', ['min', 0], ['max', 1]],
         ]);
 
         // action si invalide
