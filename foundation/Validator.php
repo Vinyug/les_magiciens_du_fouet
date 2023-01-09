@@ -57,6 +57,12 @@ class Validator
             return false;
         }, '{field} doit être carré (largeur = hauteur)');
 
+        // règle valeur entre 0 ou 1
+        $validator->addRule('intZeroOrOne', function (string $field, mixed $value, array $params, array $fields) {
+            if( $value === 0) {
+                return $value;
+            }
+        }, '{field} doit être "afficher ou masquer"');
 
         // règle valeur comprise entre 1 et 4
         $validator->addRule('intOneToFour', function (string $field, mixed $value, array $params, array $fields) {

@@ -11,44 +11,11 @@
         
         <section class="indexPosts">
             {% for post in posts %}
-            <a class="recipe" href="{{ route('posts.show', {slug: post.slug}) }}">
-                <img class="photo" src="img/posts/{{ post.img }}" alt="{{ post.img }}">
-                <div class="resume">
-                    <h2>{{ post.title }} - {{ post.cooker.firstname }} {{ post.cooker.lastname }}</h2>
-                    <p>{{ post.description }}</p>
-                    <span>
-                        {% set whisk = post.difficulty %}
-                        {% for i in 1..whisk %}
-                            <img src="/img/whisk.svg" alt="Fouet">
-                        {% endfor %}
-                        
-                        {% set euro = post.price %}
-                        {% for i in 1..euro %}
-                            <img src="/img/euro.svg" alt="Euro">
-                        {% endfor %}
-                    </span>
-                    <p>Temps de préparation : 
-                        {% if (post.time / 3600) == 1 %}
-                        {{ (post.time / 3600)|round(0, 'floor') }} heure
-                        {% elseif ((post.time / 3600) > 1) and ((post.time / 3600) < 2) %}
-                        {{ (post.time / 3600)|round(0, 'floor') }} heure
-                        {% elseif (post.time / 3600) > 1 %}
-                        {{ (post.time / 3600)|round(0, 'floor') }} heures
-                        {% endif %}
-
-                        {% if ((post.time / 60) == 1) %}
-                        {{ (post.time / 60)|round(0, 'floor') }} minute
-                        {% elseif (((post.time / 60) % 60) == 1) %}
-                        {{ ((post.time / 60) % 60)|round(0, 'floor') }} minute
-                        {% elseif ((post.time / 60) % 60) == 0 %}
-                        {% elseif (post.time / 60) < 60 %}
-                        {{  (post.time / 60) }} minutes
-                        {% elseif (post.time / 60) >= 60 %}
-                        {{  (post.time / 60) % 60 }} minutes
-                        {% endif %}
-                    </p>
-                </div>
-            </a>
+                {% if post.visibility %}
+                {% include "includes/recipe.html" %}
+                {% elseif not post.visibility and auth().checkIsAdmin() %}
+                {% include "includes/recipe.html" %}
+                {% endif %}
             {% endfor %}
 
         </section>

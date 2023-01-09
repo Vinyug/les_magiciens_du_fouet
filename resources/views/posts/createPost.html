@@ -98,6 +98,18 @@
                     <p class="error">{{ errors('cooker_id')[0] }}</p>
                     {% endif %}
                 </div>
+
+                <div class="selectFlex">
+                    <label for="visibility">Afficher l'article : (concerne uniquement les visiteurs et membres sans droit)</label>
+                    <select id="visibility" name="visibility" class="{% if errors('visibility') %}inputError{% endif %}">
+                        <option value="1">Sélectionner un choix</option>
+                        <option value="0">Masquer l'article</option>
+                        <option value="1">Afficher l'article</option>
+                    </select>
+                    {% if errors('visibility') %}
+                    <p class="error">{{ errors('visibility')[0] }}</p>
+                    {% endif %}
+                </div>
                 
                 <div class="inputFlex">
                     <label class="label-file" for="file">Choisir une image</label>

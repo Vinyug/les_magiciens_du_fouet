@@ -143,6 +143,7 @@ class PostController extends AbstractController
             'step' => ['required', ['lengthMin', 3]],
             'person' => ['required', 'integer', 'intOneToTwenty'],
             'cooker_id' => ['required', 'integer', ['exist', 'id', 'cookers']],
+            'visibility' => ['required'],
             'file' => ['required_file', 'image', 'square'],
         ]);
 
@@ -189,6 +190,7 @@ class PostController extends AbstractController
             'cooker_id' => $_POST['cooker_id'],
             'img' => $filename,
             'slug' => $slug,
+            'visibility' => $_POST['visibility'],
         ]);
 
         // status MAJ
@@ -239,6 +241,7 @@ class PostController extends AbstractController
             'step' => ['required', ['lengthMin', 3]],
             'person' => ['required', 'integer', 'intOneToTwenty'],
             'cooker_id' => ['required', 'integer', ['exist', 'id', 'cookers']],
+            'visibility' => ['required'],
         ]);
 
         // action si invalide
@@ -259,6 +262,7 @@ class PostController extends AbstractController
             'step' => $_POST['step'],
             'person' => $_POST['person'],
             'cooker_id' => $_POST['cooker_id'],
+            'visibility' => $_POST['visibility'],
         ]);
         $post->save();
 

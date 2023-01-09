@@ -22,4 +22,5 @@ return [
     'role' => 'Le rôle',
     'phone' => 'Le téléphone',
     'message' => 'Le message',
+    'visibility' => 'L\'affichage',
 ];

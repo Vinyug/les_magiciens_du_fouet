@@ -22,6 +22,9 @@ section.indexPosts .recipe {
     border-radius: 1rem;
     transition: all 0.4s;
 }
+section.indexPosts .recipe.hiddenRecipe {
+    background-color: var(--red);
+}
 section.indexPosts .recipe:hover {
     transform: scale(1.05);
     box-shadow: 0 0 8px var(--grey);
@@ -34,10 +37,20 @@ section.indexPosts .recipe img.photo {
     border-bottom-left-radius: 12px;
 }
 section.indexPosts .recipe .resume p {
-    max-width: 400px;
+    max-width: 280px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+section.indexPosts .recipe .resume p.hiddenMessage {
+    width: auto;
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border: 1px solid var(--delete);
+    border-radius: 5px;
+    overflow: auto;
+    white-space:normal;
 }
 section.indexPosts .recipe .resume p:last-child {
     margin-bottom: 1rem;

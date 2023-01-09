@@ -99,6 +99,18 @@
                     {% endif %}
                 </div>
 
+                <div class="selectFlex">
+                    <label for="visibility">Afficher l'article : (concerne uniquement les visiteurs et membres sans droit)</label>
+                    <select id="visibility" name="visibility" class="{% if errors('visibility') %}inputError{% endif %}">
+                        <option value="{{ old('visibility', post.visibility) }}">{% if old('visibility', post.visibility) %}Afficher l'article{% else %}Masquer l'article{% endif %}</option>
+                        <option value="0">Masquer l'article</option>
+                        <option value="1">Afficher l'article</option>
+                    </select>
+                    {% if errors('visibility') %}
+                    <p class="error">{{ errors('visibility')[0] }}</p>
+                    {% endif %}
+                </div>
+
                 <input type="submit" value="Mise à jour">
             </form>  
         </section> 
