@@ -25,6 +25,7 @@ return [
     'home.updateEmail' => Route::patch('/compte/email', [HomeController::class, 'updateEmail']),
     'home.updatePassword' => Route::patch('/compte/password', [HomeController::class, 'updatePassword']),
     'home.users' => Route::get('/compte/utilisateurs', [HomeController::class, 'users']),
+    'home.userUpdate' => Route::patch('/compte/utilisateurs/{id}', [HomeController::class, 'userUpdate']),
     
     // Post
     'index' => Route::get('/', [PostController::class, 'index']),

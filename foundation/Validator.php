@@ -76,5 +76,12 @@ class Validator
             // requete return un bool pour vérifier si value exist dans BDD
             return Capsule::table($params[1])->where($params[0], $value)->exists();
         }, '{field} est invalide');
+
+        // règle droit utilisateur
+        $validator->addRule('userRight', function (string $field, mixed $value, array $params, array $fields) {
+            if ($value == "default" || $value == "admin" || $value == "super admin") {
+                return $value;
+            }
+        }, '{field} est invalide');
     }
 }

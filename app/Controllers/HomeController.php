@@ -3,8 +3,10 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use VGuyomarch\Foundation\AbstractController;
 use VGuyomarch\Foundation\Authentication as Auth;
+use VGuyomarch\Foundation\Exceptions\HttpException;
 use VGuyomarch\Foundation\Session;
 use VGuyomarch\Foundation\Validator;
 use VGuyomarch\Foundation\View;
@@ -136,5 +138,35 @@ class HomeController extends AbstractController
             'users' => $users,
         ]);
     }
-    
+
+    // update user right
+    public function userUpdate(int $id): void
+    {
+        if(!Auth::checkIsSuperAdmin()) {
+            $this->redirection('login.form');
+        }
+
+        $user = User::where('id', $id)->firstOrFail();
+
+        $validator = Validator::get($_POST);
+        $validator->mapFieldsRules([
+            'role' => ['userRight'],
+        ]);
+
+        if(!$validator->validate()) {
+            Session::addFlash(Session::STATUS, 'Le droit de l\'utilisateur est invalide !');
+            Session::addFlash(Session::OLD, $_POST);
+            $this->redirection('home.users');
+        }
+        
+        $user->fill([
+            'role' => $_POST['role'],
+        ]);
+        $user->save();
+        
+        Session::addFlash(Session::STATUS, 'Le droit de l\'utilisateur a bien été mis à jour !');
+        $this->redirection('home.users');
+
+    }
+
 }

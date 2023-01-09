@@ -19,19 +19,18 @@
             <div class="listUser">
                 <h3> {{ user.name }} - {{ user.email }} </h3>
                 
-                <form method="post" action="">
-                    
+                <form method="post" action="{{ route('home.userUpdate', {id: user.id}) }}">
+                    {{ csrf_field()|raw }}
+                    {{ method('PATCH')|raw }}
+
                     {% if auth().checkIsSuperAdmin() %}
                     <div class="selectFlex">
-                        <select id="role">
+                        <select name="role" id="role">
                             <option value="{{ user.role }}"> {{ user.role }} </option>
                             <option value="default">default</option>
                             <option value="admin">admin</option>
                             <option value="super admin">super admin</option>
                         </select>
-                        {% if errors('name') %}
-                        <p class="error">{{ errors('name')[0] }}</p>
-                        {% endif %}
                     </div>
                     
                     <input type="submit" value="Modifier les droits">
