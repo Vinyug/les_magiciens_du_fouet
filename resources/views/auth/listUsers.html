@@ -22,10 +22,9 @@
                 <form method="post" action="{{ route('home.userUpdate', {id: user.id}) }}">
                     {{ csrf_field()|raw }}
                     {{ method('PATCH')|raw }}
-
-                    {% if auth().checkIsSuperAdmin() %}
+                    
                     <div class="selectFlex">
-                        <select name="role" id="role">
+                        <select name="role" id="role" {% if not auth().checkIsSuperAdmin() %}disabled{% endif %}>
                             <option value="{{ user.role }}"> {{ user.role }} </option>
                             <option value="default">default</option>
                             <option value="admin">admin</option>
@@ -33,9 +32,11 @@
                         </select>
                     </div>
                     
+                    {% if auth().checkIsSuperAdmin() %}
                     <input type="submit" value="Modifier les droits">
                     {% endif %}
                 </form>
+
             </div>
             <div class="greyDivider"></div>  
             {% endfor %}
