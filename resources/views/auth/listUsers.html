@@ -34,6 +34,13 @@
                     </div>
                     <input type="submit" value="Modifier les droits">
                 </form>
+                <span>
+                    <a href="{{ route('home.userDelete', {id: user.id}) }}" onclick="event.preventDefault();document.getElementById('delete-user').submit();"><button class="btn-delete">Supprimer utilisateur</button></a>
+                    <form method="POST" action="{{ route('home.userDelete', {id: user.id}) }}" id="delete-user" class="hidden">
+                        {{ csrf_field()|raw }}
+                        {{ method('DELETE')|raw }}
+                    </form>
+                </span>
                 {% else %}
                 <p class="role">{{ user.role }}</p>
                 {% endif %}

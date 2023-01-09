@@ -169,4 +169,19 @@ class HomeController extends AbstractController
 
     }
 
+    // delete user
+    public function userDelete(int $id): void
+    {
+        if(!Auth::checkIsSuperAdmin()) {
+            $this->redirection('login.form');
+        }
+        
+        $user = User::where('id', $id)->firstOrFail();
+        
+        $user->delete();
+        
+        Session::addFlash(Session::STATUS, 'L\'utilisateur à été supprimé !');
+        $this->redirection('home.users');
+
+    }
 }

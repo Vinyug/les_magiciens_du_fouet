@@ -36,6 +36,9 @@ section.listUsers .listUser form {
     padding-bottom: 0;
     width: 50%;
 }
+section.listUsers .listUser span {
+margin-left: 1rem;
+}
 section.listUsers .listUser p.role {
     font-weight: 600;
 }
@@ -52,7 +55,7 @@ section.listUsers .listUser form input {
     margin-left: 2rem;
     position: relative;
 }
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 1120px) {
     section.listUsers .listUser {
         flex-direction: column;
     }
@@ -60,6 +63,10 @@ section.listUsers .listUser form input {
         flex-direction: column;
         justify-content: start;
         width: 100%;
+    }
+    section.listUsers .listUser span {
+        margin-left: 0;
+        margin-top: 0.5rem;
     }
     section.listUsers .listUser p.role {
         margin-top: 0.5rem;

@@ -26,6 +26,7 @@ return [
     'home.updatePassword' => Route::patch('/compte/password', [HomeController::class, 'updatePassword']),
     'home.users' => Route::get('/compte/utilisateurs', [HomeController::class, 'users']),
     'home.userUpdate' => Route::patch('/compte/utilisateurs/{id}', [HomeController::class, 'userUpdate']),
+    'home.userDelete' => Route::delete('/compte/utilisateurs/{id}', [HomeController::class, 'userDelete']),
     
     // Post
     'index' => Route::get('/', [PostController::class, 'index']),
