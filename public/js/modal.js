@@ -15,23 +15,11 @@ const cancelDeleteUser = document.getElementById('cancel-delete-user');
 window.onclick = function(e) {
     if (e.target == modalDeletePost || e.target == cancelDeletePost) {
         modalDeletePost.style.display = "none";
-    }
-}
-
-window.onclick = function(e) {
-    if (e.target == modalDeleteComment || e.target == cancelDeleteComment) {
+    } else if (e.target == modalDeleteComment || e.target == cancelDeleteComment) {
         modalDeleteComment.style.display = "none";
-    }
-}
-
-window.onclick = function(e) {
-    if (e.target == modalDeleteCooker || e.target == cancelDeleteCooker) {
+    } else if (e.target == modalDeleteCooker || e.target == cancelDeleteCooker) {
         modalDeleteCooker.style.display = "none";
-    }
-}
-
-window.onclick = function(e) {
-    if (e.target == modalDeleteUser || e.target == cancelDeleteUser) {
+    } else if (e.target == modalDeleteUser || e.target == cancelDeleteUser) {
         modalDeleteUser.style.display = "none";
     }
 }
