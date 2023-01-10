@@ -10,6 +10,7 @@
     /* Global colors */
     --white: rgba(255, 255, 255, 1);
     --dark: rgba(51, 51, 51, 1);
+    --dark-transparent: rgba(51, 51, 51, 0.8);
     --red: rgba(255, 176, 176, 1);
     --redLight: rgba(255, 250, 250, 1);
     --delete: rgba(255, 100, 100, 1);
@@ -246,4 +247,78 @@ input[type="submit"]:hover {
 }
 .hidden {
     display: none;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--dark-transparent);
+    padding-top: 3rem;
+  }
+.modal-content {
+    background-color: var(--beige);
+    margin: 20vh auto 0 auto;
+    padding-bottom: 2rem;
+    border: 1px solid var(--grey);
+    box-shadow: 0 0 4px var(--grey);
+    max-width: 500px;
+    text-align: center;
+}
+.modal-container {
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+}
+.modal-container h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.modal-container p {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+.modal-container p.modal-information {
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+}
+.modal-container {
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+}
+.close {
+  position: absolute;
+  right: 0rem;
+  top: 17vh;
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--beige);
+}
+.close:hover,
+.close:focus {
+  color: var(--red);
+  cursor: pointer;
+}
+.btn-beige.btn-modal, .btn-delete.btn-modal {
+    margin: 1rem 0.75rem 0 0.75rem !important;
+}
+@media screen and (max-width: 564px) {
+    .modal-content {
+        max-width: 270px;
+    }
+    .btn-beige.btn-modal, .btn-delete.btn-modal {
+        margin: 0.75rem 0 !important;
+        width: 100%;
+    }
 }

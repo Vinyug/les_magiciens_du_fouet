@@ -55,6 +55,9 @@ section.listUsers .listUser form input {
     margin-left: 2rem;
     position: relative;
 }
+section.listUsers .listUser .btn-delete-user {
+    margin-left: 1rem;
+}
 @media screen and (max-width: 1120px) {
     section.listUsers .listUser {
         flex-direction: column;
@@ -77,5 +80,9 @@ section.listUsers .listUser form input {
     section.listUsers .listUser form input {
         margin: 1rem 0 0 0;
         position: relative;
+    }
+    section.listUsers .listUser .btn-delete-user {
+        margin-top: 1rem;
+        margin-left: 0;
     }
 }

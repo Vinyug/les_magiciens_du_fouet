@@ -14,13 +14,31 @@
                 <input type="number" name="visibility" id="visibility" value="{% if comment.visibility %}0{% else %}1{% endif %}">
             </form>
         </span>
-        <span>
-            <a href="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" onclick="event.preventDefault();document.getElementById('delete-comment').submit();"><button class="btn-delete">Supprimer</button></a>
-            <form method="POST" action="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" id="delete-comment" class="hidden">
-                {{ csrf_field()|raw }}
-                {{ method('DELETE')|raw }}
-            </form>
-        </span>
+
+        <button class="btn-delete" onclick="document.getElementById('modal-delete-comment').style.display='block'">Supprimer</button>
+
+        <div id="modal-delete-comment" class="modal">
+            <span onclick="document.getElementById('modal-delete-comment').style.display='none'" class="close wrapper" title="Close Modal">&times;</span>
+            
+            <div class="modal-content">
+                <div class="modal-container">
+                    <h1>Supprimer le commentaire</h1>
+                    <p>Êtes-vous sûr de vouloir supprimer le commentaire?</p>
+                    <p class="modal-information">* Cette action supprime définitivement le commentaire</p>
+                    <div class="clearfix">
+                        <button type="button" id="cancel-delete-comment" class="btn-beige btn-modal">Annuler</button>
+                        <span>
+                            <a href="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" onclick="event.preventDefault();document.getElementById('delete-comment').submit();"><button class="btn-delete">Supprimer</button></a>
+                            <form method="POST" action="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" id="delete-comment" class="hidden">
+                                {{ csrf_field()|raw }}
+                                {{ method('DELETE')|raw }}
+                            </form>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
     {% endif %}
 </div>

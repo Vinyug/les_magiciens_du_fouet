@@ -27,13 +27,32 @@
             {% if auth().checkIsAdmin() %}
             <div class="btn-admin">
                 <a href="{{ route('posts.edit', {slug: post.slug}) }}"><button class="btn-blue">Modifier</button></a>
-                <span>
-                    <a href="{{ route('posts.delete', {slug: post.slug}) }}" onclick="event.preventDefault();document.getElementById('delete-post').submit();"><button class="btn-delete">Supprimer</button></a>
-                    <form method="POST" action="{{ route('posts.delete', {slug: post.slug}) }}" id="delete-post" class="hidden">
-                        {{ csrf_field()|raw }}
-                        {{ method('DELETE')|raw }}
-                    </form>
-                </span>
+                
+                <div>
+                    <button class="btn-delete" onclick="document.getElementById('modal-delete-post').style.display='block'">Supprimer</button>
+
+                    <div id="modal-delete-post" class="modal">
+                        <span onclick="document.getElementById('modal-delete-post').style.display='none'" class="close wrapper" title="Close Modal">&times;</span>
+                        
+                        <div class="modal-content">
+                            <div class="modal-container">
+                                <h1>Supprimer l'article</h1>
+                                <p>Êtes-vous sûr de vouloir supprimer l'article?</p>
+                                <p class="modal-information">* Cette action supprime définitivement tous les commentaires de l'article</p>
+                                <div class="clearfix">
+                                    <button type="button" id="cancel-delete-post" class="btn-beige btn-modal">Annuler</button>
+                                    <span>
+                                        <a href="{{ route('posts.delete', {slug: post.slug}) }}" onclick="event.preventDefault();document.getElementById('delete-post').submit();"><button class="btn-delete btn-modal">Supprimer</button></a>
+                                        <form method="POST" action="{{ route('posts.delete', {slug: post.slug}) }}" id="delete-post" class="hidden">
+                                            {{ csrf_field()|raw }}
+                                            {{ method('DELETE')|raw }}
+                                        </form>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             {% endif %}
 

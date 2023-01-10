@@ -21,13 +21,32 @@
             {% if auth().checkIsAdmin() %}
             <div class="btn-admin">
                 <a href="{{ route('cookers.edit', {slug: cooker.slug}) }}"><button class="btn-blue">Modifier</button></a>
-                <span>
-                    <a href="{{ route('cookers.delete', {slug: cooker.slug}) }}" onclick="event.preventDefault();document.getElementById('delete-cooker').submit();"><button class="btn-delete">Supprimer</button></a>
-                    <form method="POST" action="{{ route('cookers.delete', {slug: cooker.slug}) }}" id="delete-cooker" class="hidden">
-                        {{ csrf_field()|raw }}
-                        {{ method('DELETE')|raw }}
-                    </form>
-                </span>
+                
+                <div>
+                    <button class="btn-delete" onclick="document.getElementById('modal-delete-cooker').style.display='block'">Supprimer</button>
+
+                    <div id="modal-delete-cooker" class="modal">
+                        <span onclick="document.getElementById('modal-delete-cooker').style.display='none'" class="close wrapper" title="Close Modal">&times;</span>
+                        
+                        <div class="modal-content">
+                            <div class="modal-container">
+                                <h1>Supprimer le cuisinier</h1>
+                                <p>Êtes-vous sûr de vouloir supprimer le cuisinier?</p>
+                                <p class="modal-information">* Cette action supprime définitivement toutes les recettes et commentaires</p>
+                                <div class="clearfix">
+                                    <button type="button" id="cancel-delete-cooker" class="btn-beige btn-modal">Annuler</button>
+                                    <span>
+                                        <a href="{{ route('cookers.delete', {slug: cooker.slug}) }}" onclick="event.preventDefault();document.getElementById('delete-cooker').submit();"><button class="btn-delete">Supprimer</button></a>
+                                        <form method="POST" action="{{ route('cookers.delete', {slug: cooker.slug}) }}" id="delete-cooker" class="hidden">
+                                            {{ csrf_field()|raw }}
+                                            {{ method('DELETE')|raw }}
+                                        </form>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             {% endif %}
 
