@@ -88,13 +88,12 @@ class PostController extends AbstractController
         $post = Post::where('slug', $slug)->firstOrFail();
         $comment = Comment::where('id', $id)->firstOrFail();
 
-        
         $comment->delete();
         
         Session::addFlash(Session::STATUS, 'Le commentaire a été supprimé !');
         $this->redirection('posts.show', ['slug' => $post->slug]);
-
     }
+
 
     // show/hide comment sur un post 
     public function showComment(string $slug, int $id): void
@@ -105,9 +104,6 @@ class PostController extends AbstractController
         
         $post = Post::where('slug', $slug)->firstOrFail();
         $comment = Comment::where('id', $id)->firstOrFail();
-
-        // $comment = Comment::join('posts', 'comments.post_id', '=', 'posts.id')->where('comments.post_id', $id)->firstOrFail();
-        
         
         // règle Validator
         $validator = Validator::get($_POST);

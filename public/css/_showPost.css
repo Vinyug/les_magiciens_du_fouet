@@ -179,9 +179,6 @@ section.showPost .comments {
 section.showPost .comments form {
     margin-top: 4rem;
 }
-section.showPost .comments form input[type="submit"] {
-    display: none;
-}
 section.showPost .comments .comment {
     display: flex;
     flex-wrap: nowrap;
@@ -191,7 +188,7 @@ section.showPost .comments .comment {
     margin: 1.5rem 0;
 }
 section.showPost .comments .comment .commentBody {
-    margin-right: 4rem;
+    margin-right: 8rem;
 }
 section.showPost .comments .comment .commentBody p.commentName {
     margin-bottom: 0.5rem;
@@ -208,6 +205,62 @@ section.showPost .comments .comment .commentBody p.commentTime {
 section.showPost .comments .comment button.btn-delete {
     height: 40px;
 }
+section.showPost .comments .comment .btn-comment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+section.showPost .comments .comment .btn-comment form.btn-show {
+    margin: auto 0;
+}
+section.showPost .comments .comment .btn-comment form input[type="submit"] {
+    color: var(--dark);
+    font-family: var(--text);
+    outline: none;
+    border: 1px solid var(--dark);
+    padding: 0.5rem 1rem;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 0 2px var(--dark);
+}
+section.showPost .comments .comment .btn-comment form input[type="submit"]:hover {
+    transition: all 0.3s;
+}
+section.showPost .comments .comment .btn-comment form input[type="submit"].btn-green {
+    background-color: var(--green);
+}
+section.showPost .comments .comment .btn-comment form input[type="submit"].btn-dark {
+    color: var(--white);
+    background-color: var(--dark);
+}
+section.showPost .comments .comment .btn-comment form input[type="submit"].btn-green:hover,
+section.showPost .comments .comment .btn-comment form input[type="submit"].btn-dark:hover {
+    box-shadow: 0 0 10px var(--dark);
+}
+section.showPost .comments .comment .btn-comment .btn-delete {
+    margin-left: 1rem;
+}
+
+/* MODAL */
+section.showPost .modal-container form {
+    position: relative;
+    margin-top: 0;
+    padding-bottom: 0;
+}
+section.showPost .comments .comment .btn-comment form input[type="submit"].btn-delete {
+    position: absolute;
+    bottom: 0;
+    right: 1rem;
+    color: var(--white);
+    background-color: var(--delete);
+    font-weight: 600;
+}
+section.showPost .comments .comment .btn-comment form input[type="submit"].btn-delete:hover {
+    box-shadow: 0 0 10px var(--dark);
+}
 
 @media screen and (max-width: 440px) {
     section.showPost img.photo {
@@ -219,8 +272,18 @@ section.showPost .comments .comment button.btn-delete {
         flex-direction: column;
         align-items: start;
     }
-    section.showPost .btn-comment .btn-show {
-        margin-bottom: 1rem;
+}
+@media screen and (max-width: 564px) {
+    section.showPost .modal-container form {
+        margin-top: 4rem;
+    }
+    .modal-content {
+        max-width: 270px;
+    }
+    .btn-beige.btn-modal,
+    section.showPost .comments .comment .btn-comment form input[type="submit"].btn-delete {
+        margin: 0.75rem 0 !important;
+        width: 100%;
     }
 }
 @media screen and (max-width: 600px) {
@@ -249,7 +312,14 @@ section.showPost .comments .comment button.btn-delete {
         flex-direction: column;
         align-items: start;
     }
-    section.showPost .btn-comment {
-        margin-top: 1rem;
+    section.showPost .comments .comment .commentBody {
+        margin-right: 0;
+    }
+    section.showPost .comments .comment .btn-comment {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        margin-top: 2rem;
     }
 }
