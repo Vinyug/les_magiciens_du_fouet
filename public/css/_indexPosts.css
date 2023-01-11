@@ -37,7 +37,7 @@ section.indexPosts .recipe img.photo {
     border-bottom-left-radius: 12px;
 }
 section.indexPosts .recipe .resume p {
-    max-width: 280px;
+    max-width: 400px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
