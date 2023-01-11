@@ -40,7 +40,7 @@
                                 <p>Êtes-vous sûr de vouloir supprimer l'article?</p>
                                 <p class="modal-information">* Cette action supprime définitivement tous les commentaires de l'article</p>
                                 <div class="clearfix">
-                                    <button type="button" id="cancel-delete-post" class="btn-beige btn-modal">Annuler</button>
+                                    <button type="button" id="cancel-delete-post" class="btn-beige btn-modal" onclick="document.getElementById('modal-delete-post').style.display='none'">Annuler</button>
                                     <span>
                                         <a href="{{ route('posts.delete', {slug: post.slug}) }}" onclick="event.preventDefault();document.getElementById('delete-post').submit();"><button class="btn-delete btn-modal">Supprimer</button></a>
                                         <form method="POST" action="{{ route('posts.delete', {slug: post.slug}) }}" id="delete-post" class="hidden">

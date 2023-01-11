@@ -19,10 +19,10 @@
         </form>
     
 
-        <button class="btn-delete" onclick="document.getElementById('modal-delete-comment').style.display='block'">Supprimer</button>
+        <button class="btn-delete" onclick="document.getElementById('modal-delete-comment{{ comment.id }}').style.display='block'">Supprimer</button>
 
-        <div id="modal-delete-comment" class="modal">
-            <span onclick="document.getElementById('modal-delete-comment').style.display='none'" class="close wrapper" title="Close Modal">&times;</span>
+        <div id="modal-delete-comment{{ comment.id }}" class="modal">
+            <span onclick="document.getElementById('modal-delete-comment{{ comment.id }}').style.display='none'" class="close wrapper" title="Close Modal">&times;</span>
             
             <div class="modal-content">
                 <div class="modal-container">
@@ -30,7 +30,7 @@
                     <p>Êtes-vous sûr de vouloir supprimer le commentaire?</p>
                     <p class="modal-information">* Cette action supprime définitivement le commentaire</p>
                     <div class="clearfix">
-                        <button type="button" id="cancel-delete-comment" class="btn-beige btn-modal">Annuler</button>
+                        <button type="button" id="cancel-delete-comment" class="btn-beige btn-modal" onclick="document.getElementById('modal-delete-comment{{ comment.id }}').style.display='none'">Annuler</button>
                         
                         <form method="POST" action="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" >
                             {{ csrf_field()|raw }}

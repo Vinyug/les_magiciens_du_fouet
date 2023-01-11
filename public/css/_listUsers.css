@@ -58,6 +58,34 @@ section.listUsers .listUser form input {
 section.listUsers .listUser .btn-delete-user {
     margin-left: 1rem;
 }
+/* MODAL */
+section.listUsers .modal-container form {
+    position: relative;
+    margin-top: 0;
+    padding-bottom: 0;
+}
+section.listUsers form input[type="submit"].btn-delete {
+    position: absolute;
+    bottom: 0;
+    right: -12rem;
+    color: var(--white);
+    background-color: var(--delete);
+    font-weight: 600;
+}
+section.listUsers form input[type="submit"].btn-delete:hover {
+    box-shadow: 0 0 10px var(--dark);
+}
+
+@media screen and (max-width: 564px) {
+    section.listUsers .clearfix {
+        margin-bottom: 2rem;
+    }
+    section.listUsers form input[type="submit"].btn-delete {
+        right: 0 !important;
+        bottom: -3rem;
+        width: 100%;
+    }
+}
 @media screen and (max-width: 1120px) {
     section.listUsers .listUser {
         flex-direction: column;
@@ -84,5 +112,8 @@ section.listUsers .listUser .btn-delete-user {
     section.listUsers .listUser .btn-delete-user {
         margin-top: 1rem;
         margin-left: 0;
+    }
+    section.listUsers form input[type="submit"].btn-delete {
+        right: 1.5rem;
     }
 }

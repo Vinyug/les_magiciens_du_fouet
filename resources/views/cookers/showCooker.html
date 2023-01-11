@@ -34,7 +34,7 @@
                                 <p>Êtes-vous sûr de vouloir supprimer le cuisinier?</p>
                                 <p class="modal-information">* Cette action supprime définitivement toutes les recettes et commentaires</p>
                                 <div class="clearfix">
-                                    <button type="button" id="cancel-delete-cooker" class="btn-beige btn-modal">Annuler</button>
+                                    <button type="button" id="cancel-delete-cooker" class="btn-beige btn-modal" onclick="document.getElementById('modal-delete-cooker').style.display='none'">Annuler</button>
                                     <span>
                                         <a href="{{ route('cookers.delete', {slug: cooker.slug}) }}" onclick="event.preventDefault();document.getElementById('delete-cooker').submit();"><button class="btn-delete">Supprimer</button></a>
                                         <form method="POST" action="{{ route('cookers.delete', {slug: cooker.slug}) }}" id="delete-cooker" class="hidden">
