@@ -55,9 +55,7 @@
                 {% if cooker.posts[0] %}
                     {% for post in cooker.posts %}
                         {% if post.visibility %}
-                        <li><a href="{{ route('posts.show', {slug: post.slug}) }}">{{ post.title }}</a></li>
-                        {% else %}
-                        <li>{{ cooker.firstname }} {{ cooker.lastname }} n'a pour le moment aucune recette à vous présenter</li>    
+                        <li><a href="{{ route('posts.show', {slug: post.slug}) }}">{{ post.title }}</a></li> 
                         {% endif %}
                     {% endfor %}
                 {% else %}
