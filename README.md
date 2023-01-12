@@ -1,5 +1,5 @@
 # les_magiciens_du_fouet
-Steps to access project :
+#### Steps to access project :
 - Download folder  
 - UnZip then use your local server.  
   * Warning : You must to use a localhost, redirect to folder "public" in absolute path.   
@@ -11,7 +11,7 @@ Steps to access project :
   
   
   
-Different login for project :  
+#### Different login for project :  
 - super admin :  
   * mail : superadmin@gmail.com  
   * password : 0123456789  
