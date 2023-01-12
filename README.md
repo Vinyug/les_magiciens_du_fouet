@@ -2,7 +2,7 @@
 #### Steps to access project :
 - Download folder  
 - UnZip then use your local server.  
-  * Warning : You must to use a localhost, redirect to folder "public" in absolute path.   
+  * Warning : You must to use a localhost, redirect to folder "public" in absolute path. **Otherwise CSS, IMG, JS don't work.**   
 - Go to PhpMyAdmin, create a Database : les_magiciens_du_fouet and import file .sql  
 - Copy ".env.example" to ".env" and modify with your settings  
 - Install composer  
