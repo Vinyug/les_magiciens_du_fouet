@@ -54,7 +54,7 @@
             <ul>
                 {% if cooker.posts[0] %}
                     {% for post in cooker.posts %}
-                        {% if post.visibility %}
+                        {% if post.visibility or auth().checkIsAdmin() %}
                         <li><a href="{{ route('posts.show', {slug: post.slug}) }}">{{ post.title }}</a></li> 
                         {% endif %}
                     {% endfor %}
