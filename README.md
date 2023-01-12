@@ -1,4 +1,5 @@
-# les_magiciens_du_fouet  
+# les_magiciens_du_fouet
+Steps to access project :
 - Download folder  
 - UnZip then use your local server.  
   * Warning : You must to use a localhost, redirect to folder "public" in absolute path.   
