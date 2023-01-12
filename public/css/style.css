@@ -1,0 +1,17 @@
+@import '_global.css';
+@import '_header.css';
+@import '_sectionLastPost.css';
+@import '_footer.css';
+@import '_indexPosts.css';
+@import '_listCookers.css';
+@import '_login.css';
+@import '_register.css';
+@import '_home.css';
+@import '_listUsers.css';
+@import '_createPost.css';
+@import '_editPost.css';
+@import '_showPost.css';
+@import '_createCooker.css';
+@import '_editCooker.css';
+@import '_showCooker.css';
+@import '_contact.css';

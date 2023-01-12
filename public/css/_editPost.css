@@ -1,0 +1,28 @@
+/* EDIT POST */
+section.editPost {
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    margin: 3rem 0;
+    flex-grow: 1;
+}
+section.editPost p.status {
+    width: 100%;
+    font-weight: 500;
+    box-shadow: 0 0 6px var(--red);
+    border-radius: 5px;
+    text-align: left;
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin: 3rem 0 1rem 0;
+}
+section.editPost form .inputFlex p.error,
+section.editPost form .textareaFlex p.error,
+section.editPost form .selectFlex p.error {
+    box-shadow: none;
+    color: var(--delete);
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+}
+section.editPost form .selectFlex.last {
+    margin-bottom: 3rem;
+}

@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
+<<<<<<< HEAD
 -- Generation Time: Dec 16, 2022 at 11:07 AM
+=======
+-- Generation Time: Dec 17, 2022 at 07:43 PM
+>>>>>>> dev
 -- Server version: 8.0.31
 -- PHP Version: 8.1.0
 
@@ -68,7 +72,11 @@ CREATE TABLE IF NOT EXISTS `cookers` (
 
 DROP TABLE IF EXISTS `posts`;
 CREATE TABLE IF NOT EXISTS `posts` (
+<<<<<<< HEAD
   `idposts` int UNSIGNED NOT NULL AUTO_INCREMENT,
+=======
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+>>>>>>> dev
   `user_id` int UNSIGNED NOT NULL,
   `cooker_id` int UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -78,12 +86,20 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `time` int NOT NULL,
   `ingredient` varchar(255) NOT NULL,
   `step` varchar(255) NOT NULL,
+<<<<<<< HEAD
+=======
+  `person` tinyint NOT NULL DEFAULT '1',
+>>>>>>> dev
   `slug` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `visibility` tinyint NOT NULL DEFAULT '1',
+<<<<<<< HEAD
   PRIMARY KEY (`idposts`),
+=======
+  PRIMARY KEY (`id`),
+>>>>>>> dev
   UNIQUE KEY `slug_UNIQUE` (`slug`),
   KEY `fk_posts_users1_idx` (`user_id`),
   KEY `fk_posts_cookers1_idx` (`cooker_id`)
@@ -116,7 +132,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Constraints for table `comments`
 --
 ALTER TABLE `comments`
+<<<<<<< HEAD
   ADD CONSTRAINT `fk_comments_posts` FOREIGN KEY (`post_id`) REFERENCES `posts` (`idposts`) ON DELETE CASCADE ON UPDATE RESTRICT,
+=======
+  ADD CONSTRAINT `fk_comments_posts` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+>>>>>>> dev
   ADD CONSTRAINT `fk_comments_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --

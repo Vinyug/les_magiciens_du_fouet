@@ -1,0 +1,47 @@
+<div class="comment">
+    <div class="commentBody">
+        <p class="commentName">{{ comment.user.name }}</p>
+        <p class="body">{{ comment.body }}</p>
+        <p class="commentTime">Le {{ comment.created_at|date('d/m/Y à H:i') }}</p>
+    </div>
+
+    {% if auth().checkIsAdmin() %}
+    <div class="btn-comment">
+
+
+        <form method="post" class="btn-show" action="{{ route('posts.showComment', {slug: post.slug, id: comment.id}) }}">
+            {{ csrf_field()|raw }}
+            {{ method('PATCH')|raw }}
+
+            <input type="number" class="hidden" name="visibility" id="visibility" value="{% if old('visibility', comment.visibility) %}0{% else %}1{% endif %}" hidden>
+
+            <input type="submit" class="{% if old('visibility', comment.visibility) %}btn-dark{% else %}btn-green{% endif %}" value="{% if old('visibility', comment.visibility) %}Masquer{% else %}Afficher{% endif %}">
+        </form>
+    
+
+        <button class="btn-delete" onclick="document.getElementById('modal-delete-comment{{ comment.id }}').style.display='block'">Supprimer</button>
+
+        <div id="modal-delete-comment{{ comment.id }}" class="modal">
+            <span onclick="document.getElementById('modal-delete-comment{{ comment.id }}').style.display='none'" class="close wrapper" title="Close Modal">&times;</span>
+            
+            <div class="modal-content">
+                <div class="modal-container">
+                    <h1>Supprimer le commentaire</h1>
+                    <p>Êtes-vous sûr de vouloir supprimer le commentaire?</p>
+                    <p class="modal-information">* Cette action supprime définitivement le commentaire</p>
+                    <div class="clearfix">
+                        <button type="button" id="cancel-delete-comment" class="btn-beige btn-modal" onclick="document.getElementById('modal-delete-comment{{ comment.id }}').style.display='none'">Annuler</button>
+                        
+                        <form method="POST" action="{{ route('posts.deleteComment', {slug: post.slug, id: comment.id}) }}" >
+                            {{ csrf_field()|raw }}
+                            {{ method('DELETE')|raw }}
+                            <input type="submit" class="btn-delete" value="Supprimer">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% endif %}
+</div>

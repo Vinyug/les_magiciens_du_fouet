@@ -1,0 +1,59 @@
+/* REGISTER */
+section.register {
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    margin: 3rem auto 0 auto;
+    flex-grow: 1;
+    min-width: 262px;
+    width: 50%;
+}
+section.register .messageRegister {
+    margin: 2rem 0;
+}
+section.register .messageRegister h3 {
+    font-family: var(--title);
+    font-weight: bold;
+    text-align: left;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+section.register .messageRegister p a {
+    text-decoration: none;
+    color: var(--delete);
+}
+section.register .messageRegister p a:hover {
+    color: var(--red);
+}
+section.register ul.status {
+    width: 100%;
+    font-weight: 500;
+    box-shadow: 0 0 6px var(--red);
+    border-radius: 5px;
+    text-align: left;
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin: 1rem 0 1rem 0;
+}
+section.register ul.status li {
+    list-style: none;
+    line-height: 1.5rem;
+}
+section.register form .inputFlex input:focus {
+    z-index: 1;
+}
+section.register form .inputFlex input {
+    border-radius: 0;
+}
+section.register form .inputFlex input:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+section.register form .inputFlex input:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+section.register form input[type="submit"] {
+    margin-top: 2rem;
+    position: initial;
+    width: 100%;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {% include "includes/head.html" %}
+
+    <body class="wrapper">
+
+        {% include "includes/header.html" %}
+        
+
+        <section class="listUsers">
+            <h2>Listes des utilisateurs</h2>
+
+            {% if status() %}
+            <p class="status">{{ status() }}</p>
+            {% endif %}
+
+            {% for user in users %}
+            <div class="listUser">
+                <h3> {{ user.name }} - {{ user.email }} </h3>
+                
+                {% if auth().checkIsSuperAdmin() %}
+                <form method="post" action="{{ route('home.userUpdate', {id: user.id}) }}">
+                    {{ csrf_field()|raw }}
+                    {{ method('PATCH')|raw }}
+                    
+                    <div class="selectFlex">
+                        <select name="role" id="role">
+                            <option value="{{ user.role }}"> {{ user.role }} </option>
+                            <option value="default">default</option>
+                            <option value="admin">admin</option>
+                            <option value="super admin">super admin</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="Modifier les droits">
+                </form>
+                
+                <div class="btn-delete-user">
+                    <button class="btn-delete" onclick="document.getElementById('modal-delete-user{{ user.id }}').style.display='block'">Supprimer</button>
+
+                    <div id="modal-delete-user{{ user.id }}" class="modal">
+                        <span onclick="document.getElementById('modal-delete-user{{ user.id }}').style.display='none'" class="close wrapper" title="Close Modal">&times;</span>
+                        
+                        <div class="modal-content">
+                            <div class="modal-container">
+                                <h1>Supprimer l'utilisateur</h1>
+                                <p>Êtes-vous sûr de vouloir supprimer l'utilisateur?</p>
+                                <p class="modal-information">* Cette action supprime définitivement tous les commentaires. S'il est administrateur, supprime également les cuisiniers, les recettes et commentaires associés</p>
+                                <div class="clearfix">
+                                    <button type="button" id="cancel-delete-user" class="btn-beige btn-modal" onclick="document.getElementById('modal-delete-user{{ user.id }}').style.display='none'">Annuler</button>
+                                    <span>
+                                        <form method="POST" action="{{ route('home.userDelete', {id: user.id}) }}" id="delete-user" class="">
+                                            {{ csrf_field()|raw }}
+                                            {{ method('DELETE')|raw }}
+                                            <input type="submit" value="supprimer" class="btn-delete">
+                                        </form>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <p class="role">{{ user.role }}</p>
+                {% endif %}
+            </div>
+            <div class="greyDivider"></div>  
+            {% endfor %}
+
+        </section>
+        
+        
+        {% include "includes/footer.html" %}
+        
+    </body>
+</html>

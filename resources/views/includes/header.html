@@ -1,0 +1,31 @@
+<header class="maxWidthBodyRed">
+    <a class="nameWebsite" href="{{ route('index') }}">
+        <h1>Les Magiciens du Fouet</h1>
+        <p>Toutes nos recettes</p>
+    </a>
+    <nav>
+        <ul>
+            {% if auth().check() %}
+            <li><a href="{{ route('index') }}">Accueil</a></li>
+            <li><a href="{{ route('cookers') }}">Cuisinier</a></li>
+            <li><a href="{{ route('home') }}">Mon compte</a></li>
+            <li><a href="{{ route('contact') }}">Contact</a></li>
+            <li>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Déconnexion</a>
+                <form method="POST" action="{{ route('logout') }}" id="logout-form" class="hidden">
+                    {{ csrf_field()|raw }}
+                </form>
+            </li>
+            {% else %}
+            <li><a href="{{ route('index') }}">Accueil</a></li>
+            <li><a href="{{ route('cookers') }}">Cuisinier</a></li>
+            <li><a href="{{ route('login.form') }}">Connexion</a></li>
+            <li><a href="{{ route('register.form') }}">Inscription</a></li>
+            <li><a href="{{ route('contact') }}">Contact</a></li>
+            {% endif %}
+        </ul>
+        <a class="nav-btn">
+            <img src="/img/menu.png" alt="icon menu">
+        </a>
+    </nav>
+</header>

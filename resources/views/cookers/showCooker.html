@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {% include "includes/head.html" %}
+
+    <body class="wrapper">
+
+        {% include "includes/header.html" %}
+        
+
+        <section class="showCooker">
+
+            {% if status() %}
+            <p class="status">{{ status() }}</p>
+            {% endif %}
+
+            <h2>Cuisinier</h2>
+            <h3>{{ cooker.firstname }} {{ cooker.lastname }}</h3>
+            <img class="photo" src="/img/cookers/{{ cooker.img }}" alt="{{ cooker.img }}">
+
+            {% if auth().checkIsAdmin() %}
+            <div class="btn-admin">
+                <a href="{{ route('cookers.edit', {slug: cooker.slug}) }}"><button class="btn-blue">Modifier</button></a>
+                
+                <div>
+                    <button class="btn-delete" onclick="document.getElementById('modal-delete-cooker').style.display='block'">Supprimer</button>
+
+                    <div id="modal-delete-cooker" class="modal">
+                        <span onclick="document.getElementById('modal-delete-cooker').style.display='none'" class="close wrapper" title="Close Modal">&times;</span>
+                        
+                        <div class="modal-content">
+                            <div class="modal-container">
+                                <h1>Supprimer le cuisinier</h1>
+                                <p>Êtes-vous sûr de vouloir supprimer le cuisinier?</p>
+                                <p class="modal-information">* Cette action supprime définitivement toutes les recettes et commentaires</p>
+                                <div class="clearfix">
+                                    <button type="button" id="cancel-delete-cooker" class="btn-beige btn-modal" onclick="document.getElementById('modal-delete-cooker').style.display='none'">Annuler</button>
+                                    <span>
+                                        <a href="{{ route('cookers.delete', {slug: cooker.slug}) }}" onclick="event.preventDefault();document.getElementById('delete-cooker').submit();"><button class="btn-delete">Supprimer</button></a>
+                                        <form method="POST" action="{{ route('cookers.delete', {slug: cooker.slug}) }}" id="delete-cooker" class="hidden">
+                                            {{ csrf_field()|raw }}
+                                            {{ method('DELETE')|raw }}
+                                        </form>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <h4>Recettes</h4>
+            <ul>
+                {% if cooker.posts[0] %}
+                    {% for post in cooker.posts %}
+                        {% if post.visibility %}
+                        <li><a href="{{ route('posts.show', {slug: post.slug}) }}">{{ post.title }}</a></li> 
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <li>{{ cooker.firstname }} {{ cooker.lastname }} n'a pour le moment aucune recette à vous présenter</li>    
+                {% endif %}
+            </ul>
+        </section>
+        
+        
+        {% include "includes/footer.html" %}
+        
+    </body>
+</html>

@@ -1,14 +1,27 @@
 <!DOCTYPE html>
     <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bonjour à vous !</title>
-    </head>
 
-    <body>
-        <h1>Laissez-moi deviner! Vous vivez à {{ city }} ?</h1>
-        {{ csrf_field()|raw }}
+    {% include "includes/head.html" %}
+
+    <body class="wrapper">
+
+        {% include "includes/header.html" %}
+        {% include "includes/section_lastPost.html" %}
+        
+        
+        <section class="indexPosts">
+            {% for post in posts %}
+                {% if post.visibility %}
+                {% include "includes/recipe.html" %}
+                {% elseif not post.visibility and auth().checkIsAdmin() %}
+                {% include "includes/recipe.html" %}
+                {% endif %}
+            {% endfor %}
+
+        </section>
+        
+
+        {% include "includes/footer.html" %}
+        
     </body>
 </html>

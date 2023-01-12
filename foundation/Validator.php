@@ -2,6 +2,7 @@
 
 namespace VGuyomarch\Foundation;
 
+use Illuminate\Database\Capsule\Manager as Capsule;
 use Valitron\Validator as ValitronValidator;
 
 // Utilisation de valitron pour simplifier la validation de données (formulaire)
@@ -20,6 +21,67 @@ class Validator
 
     protected static function addCustomRules(ValitronValidator $validator): void
     {
-        // Custom rules here
+        // règle valeur unique d'un champ
+        $validator->addRule('unique', function (string $field, mixed $value, array $params, array $fields) {
+            // requete return un bool pour vérifier si value exist dans BDD
+            return !Capsule::table($params[1])->where($params[0], $value)->exists();
+        }, '{field} est invalide');
+
+        // règle password en cas d'update password
+        $validator->addRule('password', function (string $field, mixed $value, array $params, array $fields) {
+            // vérifier password BDD = password saisi
+            $user = Authentication::get();
+            return password_verify($value, $user->password);
+        }, '{field} est erroné');
+
+    
+        // règle pour vérifier si le fichier est présent et s'il n'y a pas eu d'erreur d'upload
+        $validator->addRule('required_file', function (string $field, mixed $value, array $params, array $fields) {
+            return isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK;
+        }, '{field} est obligatoire');
+        
+        // règle pour vérifier qu'il s'agit d'une image (à partir du type mime)
+        $validator->addRule('image', function (string $field, mixed $value, array $params, array $fields) {
+            if(isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
+                return str_starts_with($_FILES[$field]['type'], 'image/');
+            }
+            return false;
+        }, '{field} doit être une image');
+
+        // règle vérifier si image est carré
+        $validator->addRule('square', function (string $field, mixed $value, array $params, array $fields) {
+            if(isset($_FILES[$field]) && $_FILES[$field]['error'] === UPLOAD_ERR_OK) {
+                [$width, $height] = getimagesize($_FILES[$field]['tmp_name']);
+                return $width === $height;
+            }
+            return false;
+        }, '{field} doit être carré (largeur = hauteur)');
+
+        // règle valeur comprise entre 1 et 4
+        $validator->addRule('intOneToFour', function (string $field, mixed $value, array $params, array $fields) {
+            if( $value > 0 && $value < 5) {
+                return $value;
+            }
+        }, '{field} doit être compris(e) entre 1 et 4');
+
+        // règle valeur comprise entre 1 et 20
+        $validator->addRule('intOneToTwenty', function (string $field, mixed $value, array $params, array $fields) {
+            if( $value > 0 && $value < 21) {
+                return $value;
+            }
+        }, '{field} doit être compris(e) entre 1 et 20');
+
+        // règle valeur exist en BDD
+        $validator->addRule('exist', function (string $field, mixed $value, array $params, array $fields) {
+            // requete return un bool pour vérifier si value exist dans BDD
+            return Capsule::table($params[1])->where($params[0], $value)->exists();
+        }, '{field} est invalide');
+
+        // règle droit utilisateur
+        $validator->addRule('userRight', function (string $field, mixed $value, array $params, array $fields) {
+            if ($value == "default" || $value == "admin" || $value == "super admin") {
+                return $value;
+            }
+        }, '{field} est invalide');
     }
 }

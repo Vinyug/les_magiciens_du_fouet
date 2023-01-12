@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {% include "includes/head.html" %}
+
+    <body class="wrapper">
+
+        {% include "includes/header.html" %}
+        
+
+        <section class="home">
+            <h2>Mon compte</h2>
+
+            {% if auth().checkIsAdmin() %}
+            <div class="btn-admin">
+                <a href="{{ route('home.users') }}"><button class="btn-beige">Liste utilisateurs</button></a>
+                <a href="{{ route('posts.create') }}"><button class="btn-beige">Créer une recette</button></a>
+                <a href="{{ route('cookers.create') }}"><button class="btn-beige">Créer un cuisinier</button></a>
+            </div>
+            {% endif %}
+
+            {% if status() %}
+            <p class="status">{{ status() }}</p>
+            {% endif %}
+
+            <div class="identity">
+                <form method="post" action="{{ route('home.updateName') }}">
+                    <h3>Identité</h3>
+                    {{ csrf_field()|raw }}
+                    {{ method('PATCH')|raw }}
+                    <div class="inputFlex">
+                        <label for="name">Prénom Nom</label>
+                        <input type="text" id="name" name="name" class="{% if errors('name') %}inputError{% endif %}" value="{{ old('name', user.name) }}">
+                        {% if errors('name') %}
+                        <p class="error">{{ errors('name')[0] }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="greyDivider"></div>
+                    <input type="submit" value="Modifier le nom">
+                </form>
+                
+                <form method="post" action="{{ route('home.updateEmail') }}">
+                    <h3>Adresse email</h3>
+                    {{ csrf_field()|raw }}
+                    {{ method('PATCH')|raw }}
+                    <div class="inputFlex">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="{% if errors('email') %}inputError{% endif %}" value="{{ old('email', user.email) }}">
+                        {% if errors('email') %}
+                        <p class="error">{{ errors('email')[0] }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="greyDivider"></div>
+                    <input type="submit" value="Modifier l'email">
+                </form>
+                
+                <form method="post" action="{{ route('home.updatePassword') }}">
+                    <h3>Mot de passe</h3>
+                    {{ csrf_field()|raw }}
+                    {{ method('PATCH')|raw }}
+                    <div class="inputFlex">
+                        <label for="password_old">Mot de passe actuel</label>
+                        <input type="password" id="password_old" name="password_old" class="{% if errors('password_old') %}inputError{% endif %}" placeholder="Mot de passe actuel">
+                        {% if errors('password_old') %}
+                        <p class="error">{{ errors('password_old')[0] }}</p>
+                        {% endif %}
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="password" class="{% if errors('password') %}inputError{% endif %}" placeholder="Nouveau mot de passe">
+                        <label for="confirm-password">Confirmer mot de passe</label>
+                        <input type="password" id="confirm-password" name="confirm-password" class="{% if errors('password') %}inputError{% endif %}" placeholder="Confirmer nouveau mot de passe">
+                        {% if errors('password') %}
+                        <p class="error">{{ errors('password')[0] }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="greyDivider"></div>
+                    <input type="submit" value="Modifier le mot de passe">
+                </form>
+                
+            </div>
+        </section>
+        
+        
+        {% include "includes/footer.html" %}
+        
+    </body>
+</html>

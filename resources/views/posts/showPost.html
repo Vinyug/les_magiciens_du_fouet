@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {% include "includes/head.html" %}
+
+    <body class="wrapper">
+
+        {% include "includes/header.html" %}
+        
+        
+        <section class="showPost">
+
+            {% if status() %}
+            <p class="status">{{ status() }}</p>
+            {% endif %}
+            
+            {% if errors('comment') %}
+            <p class="status">{{ errors('comment')[0] }}</p>
+            {% endif %}
+
+            <div class="heading">
+                <h2>{{ post.title }}</h2>
+                <h3>La fiche recette</h3>
+                <img class="photo" src="/img/posts/{{ post.img }}" alt="{{ post.img }}">
+            </div>
+
+            {% if auth().checkIsAdmin() %}
+            <div class="btn-admin">
+                <a href="{{ route('posts.edit', {slug: post.slug}) }}"><button class="btn-blue">Modifier</button></a>
+                
+                <div>
+                    <button class="btn-delete" onclick="document.getElementById('modal-delete-post').style.display='block'">Supprimer</button>
+
+                    <div id="modal-delete-post" class="modal">
+                        <span onclick="document.getElementById('modal-delete-post').style.display='none'" class="close wrapper" title="Close Modal">&times;</span>
+                        
+                        <div class="modal-content">
+                            <div class="modal-container">
+                                <h1>Supprimer l'article</h1>
+                                <p>Êtes-vous sûr de vouloir supprimer l'article?</p>
+                                <p class="modal-information">* Cette action supprime définitivement tous les commentaires de l'article</p>
+                                <div class="clearfix">
+                                    <button type="button" id="cancel-delete-post" class="btn-beige btn-modal" onclick="document.getElementById('modal-delete-post').style.display='none'">Annuler</button>
+                                    <span>
+                                        <a href="{{ route('posts.delete', {slug: post.slug}) }}" onclick="event.preventDefault();document.getElementById('delete-post').submit();"><button class="btn-delete btn-modal">Supprimer</button></a>
+                                        <form method="POST" action="{{ route('posts.delete', {slug: post.slug}) }}" id="delete-post" class="hidden">
+                                            {{ csrf_field()|raw }}
+                                            {{ method('DELETE')|raw }}
+                                        </form>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <article class="recipe">
+                <p class="breadcrumb">Vous êtes à : <a href="{{ route('index') }}">Les Magiciens du fouet</a> / {{ post.title }}</p>
+                <a class="cooker" href="{{ route('cookers.show', {slug: post.cooker.slug}) }}">{{ post.cooker.firstname }} {{ post.cooker.lastname }}</a>
+                <span>
+                    {% set whisk = post.difficulty %}
+                    {% for i in 1..whisk %}
+                        <img src="/img/whisk.svg" alt="Fouet">
+                    {% endfor %}
+                    
+                    {% set euro = post.price %}
+                    {% for i in 1..euro %}
+                        <img src="/img/euro.svg" alt="Euro">
+                    {% endfor %}
+                </span>
+                <p class="time">Temps de préparation :
+                    {% if (post.time / 3600) == 1 %}
+                    {{ (post.time / 3600)|round(0, 'floor') }} heure
+                    {% elseif ((post.time / 3600) > 1) and ((post.time / 3600) < 2) %}
+                    {{ (post.time / 3600)|round(0, 'floor') }} heure
+                    {% elseif (post.time / 3600) > 1 %}
+                    {{ (post.time / 3600)|round(0, 'floor') }} heures
+                    {% endif %}
+
+                    {% if ((post.time / 60) == 1) %}
+                    {{ (post.time / 60)|round(0, 'floor') }} minute
+                    {% elseif (((post.time / 60) % 60) == 1) %}
+                    {{ ((post.time / 60) % 60)|round(0, 'floor') }} minute
+                    {% elseif ((post.time / 60) % 60) == 0 %}
+                    {% elseif (post.time / 60) < 60 %}
+                    {{  (post.time / 60) }} minutes
+                    {% elseif (post.time / 60) >= 60 %}
+                    {{  (post.time / 60) % 60 }} minutes
+                    {% endif %}
+                </p>
+                <p class="person">Pour {{ post.person }} personne(s)</p>
+                <div class="ingredient">
+                    <h4>Description</h4>
+                    <p class="description">{{ post.description|nl2br }}</p>
+                </div>
+                <div class="ingredient">
+                    <h4>Ingrédients</h4>
+                    <span id="strUl">{{ post.ingredient|nl2br }}</span>
+                    <ul id="areaUl"></ul>
+                </div>
+                <div class="step">
+                    <h4>Étapes</h4>
+                    <span id="strOl">{{ post.step|nl2br }}</span>
+                    <ol id="areaOl"></ol>
+                </div>
+                <p class="created_at">Publié le {{ post.created_at|date('d/m/Y à H:i') }}</p>
+            </article>
+            
+            
+            <aside class="cookers">
+                <h4>Sélection de cuisiniers</h4>
+                <ul>
+                    {% if post.cookers[0] %}
+                        <li>Aucun cuisiner à vous présenter pour le moment</li>
+                    {% else %}
+                        {% for cooker in cookers %}
+                        <li><a href="{{ route('cookers.show', {slug: cooker.slug}) }}">{{ cooker.firstname }} {{ cooker.lastname }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </aside>
+
+            
+            <div class="comments">
+                {% if auth().check() %}
+                <form method="post" action="{{ route('posts.comment', {slug: post.slug}) }}">
+                    {{ csrf_field()|raw }}
+                    <div class="inputFlex">
+                        <input type="text" id="comment" name="comment" value="{{old('comment') }}" placeholder="Ecrivrez un commentaire ↵">
+                    </div>
+                    <input type="submit" class="hidden" value="envoyer" hidden>
+                </form>
+                {% else %}
+                <div class="greyDivider"></div>
+                {% endif %}
+                
+                {% for comment in post.comments %}
+                    {% if comment.visibility %}
+                    {% include "includes/comment.html" %}
+                    {% elseif not comment.visibility and auth().checkIsAdmin() %}
+                    {% include "includes/comment.html" %}
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+        </section>
+        
+        
+        {% include "includes/footer.html" %}
+        
+    </body>
+</html>

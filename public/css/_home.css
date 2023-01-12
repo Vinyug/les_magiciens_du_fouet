@@ -1,0 +1,40 @@
+/* Home */
+section.home {
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    margin: 3rem 0;
+    flex-grow: 1;
+}
+section.home .identity {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    text-align: center;
+    width: 100%;
+}
+section.home .btn-admin button {
+    margin: 1rem 3rem 1rem 0;
+}
+section.home p.status {
+    width: 100%;
+    font-weight: 500;
+    box-shadow: 0 0 6px var(--red);
+    border-radius: 5px;
+    text-align: left;
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin: 3rem 0 1rem 0;
+}
+section.home .identity form h3 {
+    font-family: var(--title);
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+}
+section.home .identity form .inputFlex p.error {
+    box-shadow: none;
+    color: var(--delete);
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+}

@@ -1,0 +1,55 @@
+/* SECTION LIST COOKERS */
+section.listCookers {
+    display: flex;
+    max-width: 750px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    text-align: left;
+    gap: 2rem;
+    margin: 3rem auto;
+    flex-grow: 1;
+}
+section.listCookers .cooker {
+    display: flex;
+    max-width: 318px;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--dark);
+    border: 1px solid var(--grey);
+    box-shadow: 0 0 2px var(--grey);
+    padding: 0.5rem;
+    border-radius: 1rem;
+    transition: all 0.4s;
+}
+section.listCookers .cooker:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 8px var(--grey);
+    transition: all 0.4s;
+}
+section.listCookers .cooker img.photo {
+    height: 300px;
+    width: 300px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+section.listCookers .cooker h2 {
+    width: 100%;
+    height: 64px;
+    margin-bottom: 0;
+    padding: 0.5rem 0;
+}
+@media screen and (max-width: 440px) {
+    section.listCookers .cooker img.photo {
+        height: 220px;
+        width: 220px;
+    }
+    section.listCookers .cooker {
+        max-width: 238px;
+    }
+    section.listCookers .cooker h2 {
+        font-size: 1.25rem;
+    }
+}

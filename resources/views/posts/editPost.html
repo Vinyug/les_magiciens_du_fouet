@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {% include "includes/head.html" %}
+
+    <body class="wrapper">
+
+        {% include "includes/header.html" %}
+        
+        <section class="editPost">
+            <h2>Modifier une recette</h2>
+
+            {% if status() %}
+            <p class="status">{{ status() }}</p>
+            {% endif %}
+
+            <form method="post" action="{{ route('posts.update', {slug: post.slug}) }}" enctype="multipart/form-data">
+                {{ csrf_field()|raw }}
+                {{ method('PATCH')|raw }}
+
+                <div class="inputFlex">
+                    <label for="title">Titre de la recette</label>
+                    <input type="text" id="title" name="title" class="{% if errors('title') %}inputError{% endif %}" placeholder="Ecrivrez votre texte" value="{{ old('title', post.title) }}">
+                    {% if errors('title') %}
+                    <p class="error">{{ errors('title')[0] }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="inputFlex">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" name="description" class="{% if errors('description') %}inputError{% endif %}" placeholder="Ecrivrez votre texte" value="{{ old('description', post.description) }}">
+                    {% if errors('description') %}
+                    <p class="error">{{ errors('description')[0] }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="inputFlex">
+                    <label for="difficulty">Niveau de difficulté</label>
+                    <input type="number" id="difficulty" name="difficulty" class="{% if errors('difficulty') %}inputError{% endif %}" placeholder="Nombre entre 1 et 4" value="{{ old('difficulty', post.difficulty) }}">
+                    {% if errors('difficulty') %}
+                    <p class="error">{{ errors('difficulty')[0] }}</p>
+                    {% endif %}
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="price">Niveau de coût</label>
+                    <input type="number" id="price" name="price" class="{% if errors('price') %}inputError{% endif %}" placeholder="Nombre entre 1 et 4" value="{{ old('price', post.price) }}">
+                    {% if errors('price') %}
+                    <p class="error">{{ errors('price')[0] }}</p>
+                    {% endif %}
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="time">Temps de préparation</label>
+                    <input type="number" id="time" name="time" class="{% if errors('time') %}inputError{% endif %}" placeholder="Temps en minutes" value="{{ old('time', post.time / 60) }}">
+                    {% if errors('time') %}
+                    <p class="error">{{ errors('time')[0] }}</p>
+                    {% endif %}
+                </div>
+                
+                <div class="textareaFlex">
+                    <label for="ingredient">Ingrédients</label>
+                    <textarea id="ingredient" name="ingredient" class="{% if errors('ingredient') %}inputError{% endif %}" placeholder="Séparer les ingrédients en allant à la ligne ↵" style="height: 80px;">{{ old('ingredient', post.ingredient) }}</textarea>
+                    {% if errors('ingredient') %}
+                    <p class="error">{{ errors('ingredient')[0] }}</p>
+                    {% endif %}
+                </div>
+                
+                <div class="textareaFlex">
+                    <label for="step">Étapes</label>
+                    <textarea id="step" name="step" class="{% if errors('step') %}inputError{% endif %}" placeholder="Séparer les étapes en allant à la ligne ↵" style="height: 80px;">{{ old('step', post.step) }}</textarea>
+                    {% if errors('step') %}
+                    <p class="error">{{ errors('step')[0] }}</p>
+                    {% endif %}
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="person">Nombre de personne(s)</label>
+                    <input type="number" id="person" name="person" class="{% if errors('person') %}inputError{% endif %}" placeholder="Ecrivrez le nombre" value="{{ old('person', post.person) }}">
+                    {% if errors('person') %}
+                    <p class="error">{{ errors('person')[0] }}</p>
+                    {% endif %}
+                </div>
+                
+                <div class="selectFlex">
+                    <label for="cooker_id">Cuisinier</label>
+                    <select id="cooker_id" name="cooker_id" class="{% if errors('cooker_id') %}inputError{% endif %}">
+                        <option value="{{ old('id', post.cooker.id) }}">{{ old('firstname', post.cooker.firstname) }} {{ old('lastname', post.cooker.lastname) }}</option>
+                        {% if cookers[0] %}
+                            {% for cooker in cookers %}
+                            <option value="{{ cooker.id }}">{{ cooker.firstname }} {{ cooker.lastname }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="">Aucun cuisiner, il faut en créer</option>
+                        {% endif %}
+                    </select>
+                    {% if errors('cooker_id') %}
+                    <p class="error">{{ errors('cooker_id')[0] }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="selectFlex last">
+                    <label for="visibility">Afficher l'article : (concerne uniquement les visiteurs et membres sans droit)</label>
+                    <select id="visibility" name="visibility" class="{% if errors('visibility') %}inputError{% endif %}">
+                        <option value="{{ old('visibility', post.visibility) }}">{% if old('visibility', post.visibility) %}Afficher l'article{% else %}Masquer l'article{% endif %}</option>
+                        <option value="0">Masquer l'article</option>
+                        <option value="1">Afficher l'article</option>
+                    </select>
+                    {% if errors('visibility') %}
+                    <p class="error">{{ errors('visibility')[0] }}</p>
+                    {% endif %}
+                </div>
+
+                <input type="submit" value="Mise à jour">
+            </form>  
+        </section> 
+        
+        {% include "includes/footer.html" %}
+        
+    </body>
+</html>

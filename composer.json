@@ -5,7 +5,6 @@
         "symfony/routing": "^5.4",
         "symfony/http-foundation": "^5.4",
         "vlucas/valitron": "^1.4",
-        "fakerphp/faker": "^1.17",
         "twig/twig": "^3.4",
         "cocur/slugify": "4.3"
     },

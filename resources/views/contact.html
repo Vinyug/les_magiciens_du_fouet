@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+    <html lang="fr">
+
+    {% include "includes/head.html" %}
+
+    <body class="wrapper">
+
+        {% include "includes/header.html" %}
+        
+        <section class="contact" id="contactId">
+            <h2>Contact</h2>
+            
+            <form id="contact-form" method="post" action="{{ route('contact.mail') }}" role="form">
+                {{ csrf_field()|raw }}
+
+                <div class="inputFlex">
+                    <label for="firstname">Prénom *</label>
+                    <input type="text" id="firstname" name="firstname" class="{% if errors('firstname') %}inputError{% endif %}" placeholder="Votre prénom" value="{{ old('firstname') }}">
+                    {% if errors('firstname') %}
+                    <p class="error" id="errFirstname">{{ errors('firstname')[0] }}</p>
+                    {% endif %}
+                    <p class="comments" id="commentFirstname"></p>
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="lastname">Nom *</label>
+                    <input type="text" id="name" name="lastname" class="{% if errors('lastname') %}inputError{% endif %}" placeholder="Votre nom" value="{{ old('lastname') }}">
+                    {% if errors('lastname') %}
+                    <p class="error" id="errName">{{ errors('lastname')[0] }}</p>
+                    {% endif %}
+                    <p class="comments" id="commentName"></p>
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" class="{% if errors('email') %}inputError{% endif %}" placeholder="Votre email" value="{{ old('email') }}">
+                    {% if errors('email') %}
+                    <p class="error" id="errEmail">{{ errors('email')[0] }}</p>
+                    {% endif %}
+                    <p class="comments" id="commentEmail"></p>
+                </div>
+                
+                <div class="inputFlex">
+                    <label for="phone">Téléphone</label>
+                    <input type="tel" id="phone" name="phone" class="{% if errors('phone') %}inputError{% endif %}" placeholder="Votre téléphone" value="{{ old('phone') }}">
+                    {% if errors('phone') %}
+                    <p class="error" id="errPhone">{{ errors('phone')[0] }}</p>
+                    {% endif %}
+                    <p class="comments" id="commentPhone"></p>
+                </div>
+                
+                <div class="textareaFlex">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" class="{% if errors('message') %}inputError{% endif %}" placeholder="Votre message (600 caractères maximum)" style="height: 125px;">{{ old('message') }}</textarea>
+                    {% if errors('message') %}
+                    <p class="error" id="errMessage">{{ errors('message')[0] }}</p>
+                    {% endif %}
+                    <p class="comments" id="commentMessage"></p>
+                </div>
+                    
+                <span>* Ces informations sont requises</span>
+
+                {% if status() %}
+                <p class="status">{{ status() }}</p>
+                {% endif %}
+
+                <input id="submit" type="submit" value="Envoyer">
+            </form>
+        </section>
+        
+        {% include "includes/footer.html" %}
+        
+    </body>
+</html>
